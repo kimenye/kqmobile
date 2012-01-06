@@ -1,2 +1,22 @@
-div(data-role='page')
-    !=partial('header', { title: 'Plan' })
+div.interior(data-role='page', data-add-back-btn="true", data-back-btn-text="Back")
+	!=partial('header', { title: 'Plan and Book' })
+	div.ui-content(data-role='content')
+		div.content-primary
+			form
+				div(data-role='field-contain')   
+					label(for='type_slider') Trip type
+					select#type_slider(data-role="slider")
+						option(value='return) Return
+						option(value='one-way') One way
+				div(data-role='field-contain')
+					label(for='from_airport') From
+					!=partial('airports', {name: 'from_airport'})
+				div(data-role='field-contain')
+					label(for='to_airport') To
+					!=partial('airports', {name: 'to_airport'})
+				div(data-role='field-contain')
+					label(for='dep_date') Departure
+					input#dep_date(data-role='datebox', date-options='{"mode" : "datebox", "afterToday" : true, "noButtonFocusMode": true, "disableManualInput": true}')
+				div(data-role='field-contain')
+					label(for='ret_date') Return
+					input#ret_date(data-role='datebox')

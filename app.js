@@ -8,6 +8,8 @@ var express = require('express')
 
 var app = module.exports = express.createServer();
 
+var AirportProvider = require('./airportprovider').AirportProvider;
+var airports = new AirportProvider();
 // Configuration
 
 app.configure(function(){
@@ -31,9 +33,15 @@ app.configure('production', function(){
 // Routes
 
 app.get('/', routes.index);
+
+
 app.get('/plan', function(req, res) {
-	console.log("Requested plan");
-	res.render('plan', { title: 'Kenya Airways' });
+	//console.log("Requested plan");
+	//res.render('plan', { title: 'Kenya Airways' });
+	airports.findAll(function(error, ports) {
+		console.log("Number of ports " + ports.length)
+		res.render('plan', {title: 'Kenya Airways', airports: ports});
+	})
 });
 
 //Listen on the correct port
