@@ -31,8 +31,12 @@ app.configure('production', function(){
 // Routes
 
 app.get('/', routes.index);
+app.get('/plan', function(req, res) {
+	console.log("Requested plan");
+	res.render('plan', { title: 'Kenya Airways' });
+});
 
-//app.listen(3000);
+//Listen on the correct port
 var port = process.env.PORT || 3000;
 app.listen(port, function() {
   console.log("Listening on " + port);
