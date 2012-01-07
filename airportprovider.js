@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema, ObjectId = Schema.ObjectId;
 // mongoose.connect('mongodb://localhost/kqm');
 var connection = process.env.MONGOHQ_URL | 'mongodb://localhost/kqm';
-mongoose.connect('mongodb://localhost/kqm');
+mongoose.connect(connection);
 
 var AirportSchema = new Schema({
     code  :  { type: String }
