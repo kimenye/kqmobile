@@ -16,7 +16,31 @@ div.interior(data-role='page', data-add-back-btn="true", data-back-btn-text="Bac
 					!=partial('airports', {name: 'to_airport'})
 				div(data-role='field-contain')
 					label(for='dep_date') Departure
-					input#dep_date(data-role='datebox', date-options='{"mode" : "datebox", "afterToday" : true, "noButtonFocusMode": true, "disableManualInput": true}')
+					input#dep_date(data-role='datebox', data-options='{"mode" : "datebox", "afterToday" : true, "noButtonFocusMode": true, "disableManualInput": true}')
 				div(data-role='field-contain')
 					label(for='ret_date') Return
-					input#ret_date(data-role='datebox')
+					input#ret_date(data-role='datebox', data-options='{"mode" : "datebox", "afterToday" : true, "noButtonFocusMode": true, "disableManualInput": true}')
+				div(data-role='field-contain', data-type='horizontal')
+					fieldset(data-role='controlgroup')
+						legend Options
+						label(for='sel_num_adults') Adults
+						select#sel_num_adults
+							option(value='-') Adult +12 yrs
+							option(value='1') 1 Adult
+							option(value='2') 2 Adults
+						label(for='sel_num_children') Children
+						select#sel_num_children
+							option(value='-') Child 2-11 yrs
+							option(value='1') 1 Child
+							option(value='2') 2 Children
+						label(for='sel_num_infants') Infants
+						select#sel_num_infants
+							option(value='-') Infants <2 yrs
+							option(value='1') 1 Infant
+							option(value='2') 2 Infants
+						label(for='sel_class') Class
+						select#sel_class
+							option(value='ECO') Economy
+							option(value='PW') Premier World
+			a(href="",data-role="button", data-inline="true", data-theme="b") Search
+							
