@@ -1,8 +1,8 @@
-div.interior(data-role='page', data-add-back-btn="true", data-back-btn-text="Back")
+div#planPage(class='interior', data-role='page', data-add-back-btn="true", data-back-btn-text="Back")
 	!=partial('header', { title: 'Plan and Book' })
 	div.ui-content(data-role='content')
 		div.content-primary
-			form
+			form#frmPlan(action='post' )
 				div(data-role='field-contain')   
 					label(for='type_slider') Trip type
 					select#type_slider(data-role="slider")
@@ -10,23 +10,23 @@ div.interior(data-role='page', data-add-back-btn="true", data-back-btn-text="Bac
 						option(value='one-way') One way
 				div(data-role='field-contain')
 					label(for='from_airport') From
-					!=partial('airports', {name: 'from_airport'})
+					!=partial('airports', {name: 'from_airport', def: 'NBO'})
 				div(data-role='field-contain')
 					label(for='to_airport') To
-					!=partial('airports', {name: 'to_airport'})
+					!=partial('airports', {name: 'to_airport', def: 'MBA'})
 				div(data-role='field-contain')
 					label(for='dep_date') Departure
-					input#dep_date(data-role='datebox', data-options='{"mode" : "datebox", "afterToday" : true, "noButtonFocusMode": true, "disableManualInput": true}')
+					input#dep_date(data-role='datebox', data-options='{"mode" : "datebox", "afterToday" : true, "noButtonFocusMode": true, "disableManualInput": true, "dateFormat" : "YYYY-MM-DD"}')
 				div(data-role='field-contain')
 					label(for='ret_date') Return
-					input#ret_date(data-role='datebox', data-options='{"mode" : "datebox", "afterToday" : true, "noButtonFocusMode": true, "disableManualInput": true}')
+					input#ret_date(data-role='datebox', data-options='{"mode" : "datebox", "afterToday" : true, "noButtonFocusMode": true, "disableManualInput": true, "dateFormat" : "YYYY-MM-DD"}')
 				div(data-role='field-contain', data-type='horizontal')
 					fieldset(data-role='controlgroup')
 						legend Options
 						label(for='sel_num_adults') Adults
 						select#sel_num_adults
 							option(value='-') Adult +12 yrs
-							option(value='1') 1 Adult
+							option(value='1', selected='on') 1 Adult
 							option(value='2') 2 Adults
 						label(for='sel_num_children') Children
 						select#sel_num_children
@@ -42,5 +42,6 @@ div.interior(data-role='page', data-add-back-btn="true", data-back-btn-text="Bac
 						select#sel_class
 							option(value='ECO') Economy
 							option(value='PW') Premier World
-			a(href="",data-role="button", data-inline="true", data-theme="b") Search
-							
+				div(data-role='field-contain', data-theme="c")
+					input(type="submit", value="Search")
+script(type='text/javascript', src='javascripts/app/plan.js')							
