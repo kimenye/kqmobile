@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema, ObjectId = Schema.ObjectId;
 // mongoose.connect('mongodb://localhost/kqm');
-var url = process.env.MONGOHQ_URL | 'mongodb://localhost/kqm';
+var url = process.env.MONGOHQ_URL || 'mongodb://localhost/kqm';
 console.log(url)
 mongoose.connect(url);
 
