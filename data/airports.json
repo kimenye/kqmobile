@@ -1,0 +1,114 @@
+{code: 'ABZ', name: 'Aberdeen, UK'}
+{code: 'ABJ', name: 'Abidjan'}
+{code: 'ACC', name: 'Accra'}
+{code: 'ADD', name: 'Addis Ababa'}
+{code: 'AMS', name: 'Amsterdam'}
+{code: 'TNR', name: 'Antananarivo'}
+{code: 'BKO', name: 'Bamako'}
+{code: 'BLR', name: 'Bangalore'}
+{code: 'BKK', name: 'Bangkok'}
+{code: 'BGF', name: 'Bangui'}
+{code: 'BCN', name: 'Barcelona'}
+{code: 'TXL', name: 'Berlin'}
+{code: 'BER', name: 'Berlin'}
+{code: 'BHX', name: 'Birmingham, UK'}
+{code: 'BOD', name: 'Bordeaux'}
+{code: 'BZV', name: 'Brazzaville'}
+{code: 'BRS', name: 'Bristol, UK'}
+{code: 'BRU', name: 'Brussels'}
+{code: 'OTP', name: 'Bucharest'}
+{code: 'BJM', name: 'Bujumbura'}
+{code: 'CAI', name: 'Cairo'}
+{code: 'CPT', name: 'Cape Town'}
+{code: 'CWL', name: 'Cardiff, UK'}
+{code: 'MAA', name: 'Chennai'}
+{code: 'CGN', name: 'Cologne'}
+{code: 'CMB', name: 'Colombo'}
+{code: 'COO', name: 'Cotonou'}
+{code: 'DKR', name: 'Dakar'}
+{code: 'DAR', name: 'Dar Es Salaam'}
+{code: 'DEL', name: 'Delhi'}
+{code: 'JIB', name: 'Djibouti'}
+{code: 'DLA', name: 'Douala'}
+{code: 'DXB', name: 'Dubai'}
+{code: 'DUB', name: 'Dublin'}
+{code: 'DUR', name: 'Durban'}
+{code: 'MME', name: 'Durham Tees Valley, UK'}
+{code: 'DUS', name: 'Dusseldorf'}
+{code: 'DZA', name: 'Dzaoudzi - Mayotte'}
+{code: 'EDI', name: 'Edinburgh, UK'}
+{code: 'EBB', name: 'Entebbe'}
+{code: 'FRA', name: 'Frankfurt'}
+{code: 'FNA', name: 'Freetown'}
+{code: 'GBE', name: 'Gaborone'}
+{code: 'GVA', name: 'Geneva'}
+{code: 'GLA', name: 'Glasgow, UK'}
+{code: 'CAN', name: 'Guangzhou'}
+{code: 'HAM', name: 'Hamburg'}
+{code: 'HAJ', name: 'Hanover'}
+{code: 'HRE', name: 'Harare'}
+{code: 'HEL', name: 'Helsinki'}
+{code: 'HKG', name: 'Hong Kong'}
+{code: 'HUY', name: 'HumberSide, UK'}
+{code: 'HYD', name: 'Hyderabad'}
+{code: 'JED', name: 'Jeddah'}
+{code: 'JNB', name: 'Johannesburg'}
+{code: 'JUB', name: 'Juba'}
+{code: 'KRT', name: 'Khartoum'}
+{code: 'KGL', name: 'Kigali'}
+{code: 'JRO', name: 'Kilimanjaro'}
+{code: 'FIH', name: 'Kinshasa'}
+{code: 'FKI', name: 'Kisangani'}
+{code: 'KIS', name: 'Kisumu'}
+{code: 'COK', name: 'Kochi'}
+{code: 'CCU', name: 'Kolkata'}
+{code: 'SEL', name: 'Korea'}
+{code: 'LOS', name: 'Lagos'}
+{code: 'LBA', name: 'Leeds, UK'}
+{code: 'LBV', name: 'Libreville'}
+{code: 'LLW', name: 'Lilongwe'}
+{code: 'LPL', name: 'Liverpool, UK'}
+{code: 'LHR', name: 'London - Heathrow'}
+{code: 'LAD', name: 'Luanda'}
+{code: 'FBM', name: 'Lumbumbashi'}
+{code: 'LUN', name: 'Lusaka'}
+{code: 'LYS', name: 'Lyon'}
+{code: 'MAD', name: 'Madrid'}
+{code: 'MLE', name: 'Maldives Island'}
+{code: 'MYD', name: 'Malindi'}
+{code: 'MAN', name: 'Manchester, UK'}
+{code: 'MPM', name: 'Maputo'}
+{code: 'MRS', name: 'Marseille'}
+{code: 'MXP', name: 'Milan - Malpensa'}
+{code: 'MBA', name: 'Mombasa'}
+{code: 'ROB', name: 'Monrovia - Roberts Intl'}
+{code: 'HAH', name: 'Moroni'}
+{code: 'BOM', name: 'Mumbai'}
+{code: 'MUC', name: 'Munich'}
+{code: 'MCT', name: 'Muscat'}
+{code: 'NBO', name: 'Nairobi'}
+{code: 'APL', name: 'Nampula'}
+{code: 'NDJ', name: 'Ndjamena'}
+{code: 'NLA', name: 'Ndola'}
+{code: 'NCL', name: 'Newcastle, UK'}
+{code: 'NCE', name: 'Nice'}
+{code: 'NWI', name: 'Norwich City, UK'}
+{code: 'NUE', name: 'Nuremberg'}
+{code: 'OSL', name: 'Oslo'}
+{code: 'OUA', name: 'Ouagadougou'}
+{code: 'CDG', name: 'Paris - Charles de Gaulle'}
+{code: 'POL', name: 'PEMBA'}
+{code: 'PLZ', name: 'Port Elizabeth'}
+{code: 'PRG', name: 'Prague'}
+{code: 'FCO', name: 'Rome'}
+{code: 'SEZ', name: 'Seychelles'}
+{code: 'ARN', name: 'Stockholm'}
+{code: 'STR', name: 'Stuttgart'}
+{code: 'SYD', name: 'Sydney'}
+{code: 'TLS', name: 'Toulouse'}
+{code: 'VCE', name: 'Venice'}
+{code: 'VIE', name: 'Vienna'}
+{code: 'WAW', name: 'Warsaw'}
+{code: 'YAO', name: 'Yaounde'}
+{code: 'ZNZ', name: 'Zanzibar'}
+{code: 'ZRH', name: 'Zurich'}

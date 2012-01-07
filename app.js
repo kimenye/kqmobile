@@ -35,11 +35,12 @@ app.configure('production', function(){
 app.get('/', routes.index);
 
 
+// var ports;
+
 app.get('/plan', function(req, res) {
 	//console.log("Requested plan");
 	//res.render('plan', { title: 'Kenya Airways' });
 	airports.findAll(function(error, ports) {
-		console.log("Number of ports " + ports.length)
 		res.render('plan', {title: 'Kenya Airways', airports: ports});
 	})
 });
