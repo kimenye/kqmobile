@@ -35,14 +35,23 @@ app.configure('production', function(){
 app.get('/', routes.index);
 
 
+var locations = null;
+airports.findAll(function(error, ports) {
+	locations = ports;
+});
 // var ports;
 
 app.get('/plan', function(req, res) {
 	//console.log("Requested plan");
 	//res.render('plan', { title: 'Kenya Airways' });
-	airports.findAll(function(error, ports) {
-		res.render('plan', {title: 'Kenya Airways', airports: ports});
-	})
+	// airports.findAll(function(error, ports) {
+	// 		res.render('plan', {title: 'Kenya Airways', airports: locations});
+	// 	})
+	res.render('plan', {title: 'Kenya Airways', airports: locations});
+});
+
+app.get('/timetable', function(req, res) {
+	res.render('timetable', {title: 'Kenya Airways', airports: locations});
 });
 
 //Listen on the correct port
