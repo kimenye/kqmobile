@@ -1,21 +1,22 @@
-{source: 'NBO', destination: 'MBA', code: 'KQ 600', dep: '06:00', arr: '07:00', equipment: 'Boeing 737-300'}
-{source: 'NBO', destination: 'MBA', code: 'KQ 602', dep: '08:00', arr: '09:00', equipment: 'Boeing 737-300'}
-{source: 'NBO', destination: 'MBA', code: 'KQ 604', dep: '09:30', arr: '10:30', equipment: 'Boeing 737-300'}
-{source: 'NBO', destination: 'MBA', code: 'KQ 606', dep: '11:30', arr: '12:30', equipment: 'Boeing 737-300'}
-{source: 'NBO', destination: 'MBA', code: 'KQ 608', dep: '13:00', arr: '14:00', equipment: 'Boeing 737-300'}
-{source: 'NBO', destination: 'MBA', code: 'KQ 610', dep: '15:00', arr: '16:00', equipment: 'Boeing 737-300'}
-{source: 'NBO', destination: 'MBA', code: 'KQ 612', dep: '16:30', arr: '17:30', equipment: 'Boeing 737-300'}
-{source: 'NBO', destination: 'MBA', code: 'KQ 614', dep: '17:30', arr: '18:30', equipment: 'Boeing 737-300'}
-{source: 'NBO', destination: 'MBA', code: 'KQ 616', dep: '18:30', arr: '19:30', equipment: 'Boeing 737-300'}
-{source: 'NBO', destination: 'MBA', code: 'KQ 618', dep: '20:00', arr: '21:00', equipment: 'Boeing 737-300'}
-{source: 'NBO', destination: 'MBA', code: 'KQ 622', dep: '23:05', arr: '00:05', equipment: 'Boeing 737-300'}
-{source: 'MBA', destination: 'NBO', code: 'KQ 601', dep: '07:40', arr: '08:40', equipment: 'Boeing 737-300'}
-{source: 'MBA', destination: 'NBO', code: 'KQ 603', dep: '09:40', arr: '10:40', equipment: 'Boeing 737-300'}
-{source: 'MBA', destination: 'NBO', code: 'KQ 605', dep: '11:10', arr: '12:10', equipment: 'Boeing 737-300'}
-{source: 'MBA', destination: 'NBO', code: 'KQ 607', dep: '13:10', arr: '14:10', equipment: 'Boeing 737-300'}
-{source: 'MBA', destination: 'NBO', code: 'KQ 609', dep: '14:40', arr: '15:40', equipment: 'Boeing 737-300'}
-{source: 'MBA', destination: 'NBO', code: 'KQ 611', dep: '16:40', arr: '17:40', equipment: 'Boeing 737-300'}
-{source: 'MBA', destination: 'NBO', code: 'KQ 613', dep: '18:10', arr: '19:10', equipment: 'Boeing 737-300'}
-{source: 'MBA', destination: 'NBO', code: 'KQ 615', dep: '19:10', arr: '20:10', equipment: 'Boeing 737-300'}
-{source: 'MBA', destination: 'NBO', code: 'KQ 617', dep: '20:10', arr: '21:10', equipment: 'Boeing 737-300'}
-{source: 'MBA', destination: 'NBO', code: 'KQ 619', dep: '21:40', arr: '22:40', equipment: 'Boeing 737-300'}
+{source: 'NBO', destination: 'MBA', code: 'KQ 600', dep: '06:00', arr: '07:00', equipment: 'Boeing 737-300', days: 'A'}
+{source: 'NBO', destination: 'MBA', code: 'KQ 602', dep: '08:00', arr: '09:00', equipment: 'Boeing 737-300', days: 'A'}
+{source: 'NBO', destination: 'MBA', code: 'KQ 604', dep: '09:30', arr: '10:30', equipment: 'Boeing 737-300', days: 'A'}
+{source: 'NBO', destination: 'MBA', code: 'KQ 606', dep: '11:30', arr: '12:30', equipment: 'Boeing 737-300', days: 'A'}
+{source: 'NBO', destination: 'MBA', code: 'KQ 608', dep: '13:00', arr: '14:00', equipment: 'Boeing 737-300', days: 'A'}
+{source: 'NBO', destination: 'MBA', code: 'KQ 610', dep: '15:00', arr: '16:00', equipment: 'Boeing 737-300', days: 'A'}
+{source: 'NBO', destination: 'MBA', code: 'KQ 612', dep: '16:30', arr: '17:30', equipment: 'Boeing 737-300', days: 'A'}
+{source: 'NBO', destination: 'MBA', code: 'KQ 614', dep: '17:30', arr: '18:30', equipment: 'Boeing 737-300', days: 'S,F,S'}
+{source: 'NBO', destination: 'MBA', code: 'KQ 616', dep: '18:30', arr: '19:30', equipment: 'Boeing 737-300', days: 'A'}
+{source: 'NBO', destination: 'MBA', code: 'KQ 618', dep: '20:00', arr: '21:00', equipment: 'Boeing 737-300', days: 'A'}
+{source: 'NBO', destination: 'MBA', code: 'KQ 622', dep: '23:05', arr: '00:05', equipment: 'Boeing 737-300', days: 'A'}
+{source: 'MBA', destination: 'NBO', code: 'KQ 601', dep: '07:40', arr: '08:40', equipment: 'Boeing 737-300', days: 'A'}
+{source: 'MBA', destination: 'NBO', code: 'KQ 603', dep: '09:40', arr: '10:40', equipment: 'Boeing 737-300', days: 'A'}
+{source: 'MBA', destination: 'NBO', code: 'KQ 605', dep: '11:10', arr: '12:10', equipment: 'Boeing 737-300', days: 'A'}
+{source: 'MBA', destination: 'NBO', code: 'KQ 607', dep: '13:10', arr: '14:10', equipment: 'Boeing 737-300', days: 'A'}
+{source: 'MBA', destination: 'NBO', code: 'KQ 609', dep: '14:40', arr: '15:40', equipment: 'Boeing 737-300', days: 'A'}
+{source: 'MBA', destination: 'NBO', code: 'KQ 611', dep: '16:40', arr: '17:40', equipment: 'Boeing 737-300', days: 'A'}
+{source: 'MBA', destination: 'NBO', code: 'KQ 613', dep: '18:10', arr: '19:10', equipment: 'Boeing 737-300', days: 'A'}
+{source: 'MBA', destination: 'NBO', code: 'KQ 615', dep: '19:10', arr: '20:10', equipment: 'Boeing 737-300', days: 'T,W,T'}
+{source: 'MBA', destination: 'NBO', code: 'KQ 617', dep: '20:10', arr: '21:10', equipment: 'Boeing 737-300', days: 'A'}
+{source: 'MBA', destination: 'NBO', code: 'KQ 619', dep: '21:40', arr: '22:40', equipment: 'Boeing 737-300', days: 'A'}
+

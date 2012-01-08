@@ -15,14 +15,14 @@ var AirportSchema = new Schema({
  */
 var Airport = mongoose.model('Airport', AirportSchema);
 
-AirportProvider=function() {};
-AirportProvider.prototype.data = [];
+DataProvider=function() {};
+// DataProvider.prototype.data = [];
 
-AirportProvider.prototype.findAll = function(callback) {
-	callback( null, this.data )
-};
+// DataProvider.prototype.findAll = function(callback) {
+// 	callback( null, this.data )
+// };
 
-AirportProvider.prototype.findAll = function(callback) {
+DataProvider.prototype.findAllAirports = function(callback) {
 	Airport.find({}, function(error, docs) {
 		if (error) callback(error)
 		else {
@@ -32,4 +32,6 @@ AirportProvider.prototype.findAll = function(callback) {
 	});
 };
 
-exports.AirportProvider = AirportProvider;
+DataProvider.prototype.findAll
+
+exports.DataProvider = DataProvider;

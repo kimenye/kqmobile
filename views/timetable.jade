@@ -2,7 +2,7 @@ div#timetablePage(class='interior', data-role='page', data-add-back-btn="true", 
 	!=partial('header', { title: 'Timetable' })
 	div.ui-content(data-role='content')
 		div.content-primary
-			form#frmTimetable(action='post' )
+			form#frmTimetable(action='/timetable', method="post")
 				div(data-role='field-contain')
 					label(for='from_airport') From
 					!=partial('airports', {name: 'from_airport', def: 'NBO'})
@@ -15,6 +15,7 @@ div#timetablePage(class='interior', data-role='page', data-add-back-btn="true", 
 				div(data-role='field-contain')
 					label(for='ret_date') Return
 					input#ret_date(data-role='datebox', data-options='{"mode" : "datebox", "afterToday" : true, "noButtonFocusMode": true, "disableManualInput": true, "dateFormat" : "YYYY-MM-DD"}')
+				input#action(type='hidden', value='search')
 				div(data-role='field-contain', data-theme="c")
 					input(type="submit", value="Search")
 script(type='text/javascript', src='javascripts/app/plan.js')

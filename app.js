@@ -8,8 +8,8 @@ var express = require('express')
 
 var app = module.exports = express.createServer();
 
-var AirportProvider = require('./airportprovider').AirportProvider;
-var airports = new AirportProvider();
+var DataProvider = require('./dataprovider').DataProvider;
+var data = new DataProvider();
 // Configuration
 
 app.configure(function(){
@@ -36,7 +36,7 @@ app.get('/', routes.index);
 
 
 var locations = null;
-airports.findAll(function(error, ports) {
+data.findAllAirports(function(error, ports) {
 	locations = ports;
 });
 // var ports;
