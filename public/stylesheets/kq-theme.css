@@ -50,6 +50,10 @@
 	background: rgb(255, 239, 229);
 }
 
+.ui-btn-hover-b {
+	background: black;
+}
+
 /* validation */
 .portrait label.error, .landscape label.error {
     color: red;

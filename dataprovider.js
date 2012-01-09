@@ -41,14 +41,13 @@ DataProvider=function() {};
  * Create a paged timetable
  */
 DataProvider.prototype.timetable = function(callback,from,to,page) {
-	page *= 1;
+	page = parseInt(page);
 	var now = moment().add('days', page);
 	
 	var dayStr = now.format('dddd, MMMM Do YYYY');
 	var dayIdx = now.format('ddd');
+	// console.log("Requested page " + dayStr + " Day: " + dayIdx);
 	
-	
-	console.log("Requested page " + dayStr + " Day: " + dayIdx);
 	// Flight.find({ source: from, destination: to, days: /.*A.*/ }, function(error, docs) {
 	// 		if(error) callback (error)
 	// 		else {
@@ -56,6 +55,7 @@ DataProvider.prototype.timetable = function(callback,from,to,page) {
 	// 			callback(docs, dayStr,day);
 	// 		}
 	// 	});
+	
 	var next_url = "#";
 	var prev_url = "#";
 	var url = "timetable_view?action=search&from_airport="+from+"&to_airport="+to+"&page=";
@@ -65,12 +65,15 @@ DataProvider.prototype.timetable = function(callback,from,to,page) {
 	next_url = url + nextPageIdx;
 	prev_url = url + prevPageIdx;
 
-	console.log("Next page: " + next_url);
-	console.log("Prev page: " + prev_url);
+	// console.log("Next page: " + next_url);
+	// console.log("Prev page: " + prev_url);
+	
+	var regExp = new RegExp(dayIdx,"g");
 	
 	var query = Flight.find({});
 	query.where('source', from);
 	query.where('destination', to);
+	query.where('days', regExp);
 	query.exec(function(error,docs) {
 		if(error) callback (error)
 		else {
