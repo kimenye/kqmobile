@@ -9,13 +9,8 @@ div#timetablePage(class='interior', data-role='page', data-add-back-btn="true", 
 				div(data-role='field-contain')
 					label(for='to_airport') To
 					!=partial('airports', {name: 'to_airport', def: 'MBA'})
-				div(data-role='field-contain')
-					label(for='dep_date') Departure
-					input#dep_date(name='dep_date', data-role='datebox', data-options='{"mode" : "datebox", "afterToday" : true, "noButtonFocusMode": true, "disableManualInput": true, "dateFormat" : "YYYY-MM-DD"}')
-				div(data-role='field-contain')
-					label(for='ret_date') Return
-					input#ret_date(name='ret_date', data-role='datebox', data-options='{"mode" : "datebox", "afterToday" : true, "noButtonFocusMode": true, "disableManualInput": true, "dateFormat" : "YYYY-MM-DD"}')
 				input#action(type='hidden', name='action', value='search')
 				div(data-role='field-contain', data-theme="c")
+					br
 					input(type="submit", value="Search")
 script(type='text/javascript', src='javascripts/app/plan.js')

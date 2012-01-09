@@ -42,20 +42,25 @@ data.findAllAirports(function(error, ports) {
 // var ports;
 
 app.get('/plan', function(req, res) {
-	res.render('plan', {title: 'Kenya Airways', airports: locations});
+	res.render('plan', {subtitle: 'Plan', airports: locations});
 });
 
 app.get('/timetable', function(req, res) {
-	res.render('timetable', {title: 'Kenya Airways', airports: locations});
+	res.render('timetable', {subtitle: 'Timetable', airports: locations});
 });
 
 app.post('/timetable', function(req, res) {
 	// console.log("Action is " + req.param('action'));
-	var action = req.param('action')
+	var action = req.param('action');
+	var from = req.param('from_airport');
+	var to = req.param('to_airport');
+	// var dep = req.param('dep_date');
+	// var ret = req.param('rep_date');
+	
 	if (action == 'search') {
-		data.timetable(function(flights) {
-			res.render('timetable_view', {title: 'Kenya Airways', flights: flights});
-		});
+		data.timetable(function(flights,forDay) {
+			res.render('timetable_view', {subtitle: "Timetable for "+ from + " - " + to, date: forDay, flights: flights, hdn_source: from});
+		}, from, to);
 	}
 	
 });

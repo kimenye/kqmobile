@@ -2,8 +2,9 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema, ObjectId = Schema.ObjectId;
 // mongoose.connect('mongodb://localhost/kqm');
 var url = process.env.MONGOHQ_URL || 'mongodb://localhost/kqm';
-console.log(url)
+// console.log(url)
 mongoose.connect(url);
+var moment = require('moment');
 
 var AirportSchema = new Schema({
     code  :  { type: String }
@@ -18,7 +19,8 @@ var FlightSchema = new Schema({
 	dep: {type: String},
 	arr: {type: String},
 	equipment: {type: String},
-	days: {type: String}
+	days: {type: String},
+	duration: {type: String}
 })
 
 /**
@@ -26,6 +28,7 @@ var FlightSchema = new Schema({
  */
 var Airport = mongoose.model('Airport', AirportSchema);
 var Flight = mongoose.model('Flight', FlightSchema);
+
 
 DataProvider=function() {};
 // DataProvider.prototype.data = [];
@@ -38,11 +41,20 @@ DataProvider=function() {};
  * Create a paged timetable
  */
 DataProvider.prototype.timetable = function(callback,from,to,dep,arr,page) {
-	Flight.find({}, function(error, docs) {
+	// console.log("From : " + from);
+	var forDay = moment();
+	var day = page || 0;
+	forDay = forDay.add('days',day);
+	
+	var dayStr = forDay.format('dddd, MMMM Do YYYY');
+	var dayIdx = forDay.format('ddd');
+	
+	console.log("Requested page " + dayStr + " Day: " + dayIdx);
+	Flight.find({ source: from, destination: to }, function(error, docs) {
 		if(error) callback (error)
 		else {
-			console.log("Number of results is " + docs.length);
-			callback(null, docs);
+			console.log("Number of flights is " + docs.length);
+			callback(docs, dayStr,day);
 		}
 	});
 };
@@ -54,7 +66,7 @@ DataProvider.prototype.findAllAirports = function(callback) {
 	Airport.find({}, function(error, docs) {
 		if (error) callback(error)
 		else {
-			console.log("Number of results is " + docs.length);
+			// console.log("Number of results is " + docs.length);
 			callback(null, docs);
 		}
 	});
