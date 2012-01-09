@@ -5,6 +5,7 @@
 
 var express = require('express')
   , routes = require('./routes')
+  , moment = require('moment');
 
 var app = module.exports = express.createServer();
 
@@ -42,7 +43,37 @@ data.findAllAirports(function(error, ports) {
 // var ports;
 
 app.get('/plan', function(req, res) {
-	res.render('plan', {subtitle: 'Plan', airports: locations});
+	var now = moment(new Date());
+
+	var dep = now.format("YYYY-MM-DD");
+	var ret = now.add('days',3).format("YYYY-MM-DD");
+	
+	res.render('plan', {subtitle: 'Plan', airports: locations, dep_date: dep, ret_date: ret});
+});
+
+app.get('/plan_view', function(req, res) {
+	var action = req.param('action');
+	var from = req.param('from_airport');
+	var to = req.param('to_airport');
+	var page = req.param('page');
+	var flight_type = req.param('flight_type');
+	
+	if (!page)
+		page = 0;
+		
+	console.log("Params: action=" +action+",from="+from+",to="+to+",page="+page);
+	
+	// if (action == 'search') {
+		data.timetable(function(flights,forDay,page,prev_url,next_url) {
+			res.render('plan_view', {subtitle: "Flights for "+ from + " - " + to, 
+				date: forDay, 
+				flights: flights, 
+				next_url: next_url,
+				prev_url: prev_url,
+				flight_type: flight_type,
+				page: page});
+		}, from, to, page,"plan_view");
+	// }	
 });
 
 app.get('/timetable', function(req, res) {
@@ -69,9 +100,20 @@ app.get('/timetable_view', function(req, res) {
 				next_url: next_url,
 				prev_url: prev_url,
 				page: page});
-		}, from, to, page);
+		}, from, to, page,"timetable_view");
 	}
 	
+});
+
+app.get('/select', function(req, res) {
+	var code = req.param('code');
+	var when = req.param('when');
+	var price = req.param('price');
+		
+	data.findFlight(function(flight) {
+		res.render('select', { subtitle: 'Add to Selection', flight: flight, when: when, price: price});
+	}, code);
+
 });
 
 //Listen on the correct port

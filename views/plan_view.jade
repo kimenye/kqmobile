@@ -1,4 +1,4 @@
-div#timetableViewPage(class='interior', data-role='page')
+div#planViewPage(class='interior', data-role='page')
 	h1.logo
 		a(href="/")
 			img.logoimg(src='images/kq_logo.jpg')
@@ -15,12 +15,14 @@ div#timetableViewPage(class='interior', data-role='page')
 			-if (flights.length > 0)
 				-each flight in flights
 					li
-						a
+						a(href="/select?code=#{flight.code}&when=#{date}&price=119", data-rel="dialog", data-transition="slideup")
 							div.ui-grid-b
 								div.ui-block-a!=(flight.dep + ' ' + flight.source)
 								div.ui-block-b!=flight.code
 								div.ui-block-a!=(flight.arr + ' ' + flight.destination)
 								div.ui-block-b!=flight.duration
+								div.ui-block-c
+									span 119$
 			-else
 				li
 					div

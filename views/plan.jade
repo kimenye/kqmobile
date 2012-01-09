@@ -2,11 +2,11 @@ div#planPage(class='interior', data-role='page', data-add-back-btn="true", data-
 	!=partial('header', { subtitle: 'Plan and Book' })
 	div.ui-content(data-role='content')
 		div.content-primary
-			form#frmPlan(action='post' )
+			form#frmPlan(action='/plan_view', method='get')
 				div(data-role='field-contain')   
 					label(for='type_slider') Trip type
-					select#type_slider(data-role="slider")
-						option(value='return) Return
+					select#type_slider(data-role="slider", name: "flight_type")
+						option(value='return') Return
 						option(value='one-way') One way
 				div(data-role='field-contain')
 					label(for='from_airport') From
@@ -16,10 +16,10 @@ div#planPage(class='interior', data-role='page', data-add-back-btn="true", data-
 					!=partial('airports', {name: 'to_airport', def: 'MBA'})
 				div(data-role='field-contain')
 					label(for='dep_date') Departure
-					input#dep_date(data-role='datebox', data-options='{"mode" : "datebox", "afterToday" : true, "noButtonFocusMode": true, "disableManualInput": true, "dateFormat" : "YYYY-MM-DD"}')
+					input#dep_date(data-role='datebox', data-options='{"mode" : "calbox", "afterToday" : true, "noButtonFocusMode": true, "disableManualInput": true, "dateFormat" : "YYYY-MM-DD"}', value=dep_date, name: 'dep_date')
 				div(data-role='field-contain')
 					label(for='ret_date') Return
-					input#ret_date(data-role='datebox', data-options='{"mode" : "datebox", "afterToday" : true, "noButtonFocusMode": true, "disableManualInput": true, "dateFormat" : "YYYY-MM-DD"}')
+					input#ret_date(name="ret_date", data-role='datebox', data-options='{"mode" : "calbox", "afterToday" : true, "noButtonFocusMode": true, "disableManualInput": true, "dateFormat" : "YYYY-MM-DD"}', value=ret_date, name: 'ret_date')
 				div(data-role='field-contain', data-type='horizontal')
 					fieldset(data-role='controlgroup')
 						legend Options

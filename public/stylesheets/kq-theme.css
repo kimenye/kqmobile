@@ -47,7 +47,11 @@
 }
 
 .ui-btn-hover-c {
-	background: rgb(255, 239, 229);
+/*	background: rgb(255, 239, 229);*/
+}
+
+.ui-btn-active {
+/*	background: rgb(255, 239, 229);*/
 }
 
 .ui-btn-hover-b {

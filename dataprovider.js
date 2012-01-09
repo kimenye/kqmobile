@@ -37,10 +37,19 @@ DataProvider=function() {};
 // 	callback( null, this.data )
 // };
 
+DataProvider.prototype.findFlight = function(callback,flight_code) {
+	Flight.findOne({ code: flight_code}, function(error, flight) {
+		if(error) callback(error)
+		else {
+			callback(flight);
+		}
+	});
+};
+
 /**
  * Create a paged timetable
  */
-DataProvider.prototype.timetable = function(callback,from,to,page) {
+DataProvider.prototype.timetable = function(callback,from,to,page,base_url) {
 	page = parseInt(page);
 	var now = moment().add('days', page);
 	
@@ -58,7 +67,7 @@ DataProvider.prototype.timetable = function(callback,from,to,page) {
 	
 	var next_url = "#";
 	var prev_url = "#";
-	var url = "timetable_view?action=search&from_airport="+from+"&to_airport="+to+"&page=";
+	var url = base_url + "?action=search&from_airport="+from+"&to_airport="+to+"&page=";
 	
 	var nextPageIdx = (page + 1) < 6 ? (page + 1): 6;
 	var prevPageIdx = (page - 1) >=0 ? (page - 1): 0;
