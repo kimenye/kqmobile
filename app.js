@@ -56,20 +56,18 @@ app.get('/timetable_view', function(req, res) {
 	var to = req.param('to_airport');
 	var page = req.param('page');
 	
-	
-	
 	if (!page)
 		page = 0;
 		
 	console.log("Params: action=" +action+",from="+from+",to="+to+",page="+page);
 	
 	if (action == 'search') {
-		data.timetable(function(flights,forDay,page) {
+		data.timetable(function(flights,forDay,page,prev_url,next_url) {
 			res.render('timetable_view', {subtitle: "Timetable for "+ from + " - " + to, 
 				date: forDay, 
 				flights: flights, 
-				hdn_source: from, 
-				hdn_dest: to,
+				next_url: next_url,
+				prev_url: prev_url,
 				page: page});
 		}, from, to, page);
 	}

@@ -1,15 +1,10 @@
 div#timetableViewPage(class='interior', data-role='page')
-	form#frmTimetableView(action='/timetable', method="post", data-ajax="false")
-		input#action(type='hidden', name='action', value='search')
-		input#from_airport(type='hidden', name='from_airport', value=hdn_source)
-		input#to_airport(type='hidden', name='to_airport', value=hdn_dest)
-		input#page(type='hidden',name='page', value=(page+1))
 	h1.logo
 		a(href="/")
 			img.logoimg(src='images/kq_logo.jpg')
 	div(data-role='header', data-position='inline')
 		-if (page > 0)
-			a#btn-next-timetable(data-role="button", class="ui-btn-left", data-icon="arrow-l", data-iconpos="left") Prev
+			a#btn-next-timetable(data-role="button", class="ui-btn-left", data-icon="arrow-l", data-iconpos="left", href=prev_url) Prev
 		h1=subtitle
 		-if (page < 6)
 			a#btn-next-timetable(data-role="button", class="ui-btn-right", data-icon="arrow-r", data-iconpos="right", href=next_url) Next

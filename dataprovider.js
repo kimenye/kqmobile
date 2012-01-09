@@ -56,18 +56,26 @@ DataProvider.prototype.timetable = function(callback,from,to,page) {
 	// 			callback(docs, dayStr,day);
 	// 		}
 	// 	});
+	var next_url = "#";
+	var prev_url = "#";
+	var url = "timetable_view?action=search&from_airport="+from+"&to_airport="+to+"&page=";
 	
+	var nextPageIdx = (page + 1) < 6 ? (page + 1): 6;
+	var prevPageIdx = (page - 1) >=0 ? (page - 1): 0;
+	next_url = url + nextPageIdx;
+	prev_url = url + prevPageIdx;
+
+	console.log("Next page: " + next_url);
+	console.log("Prev page: " + prev_url);
 	
 	var query = Flight.find({});
 	query.where('source', from);
 	query.where('destination', to);
-	// query.where('days', /.*A.*/);
-	// query.or('days', /.dayIdx.*/);
 	query.exec(function(error,docs) {
 		if(error) callback (error)
 		else {
 			console.log("Number of flights is " + docs.length);
-			callback(docs, dayStr, page);
+			callback(docs, dayStr, page, prev_url, next_url);
 		}		
 	});
 };
