@@ -12,12 +12,18 @@ div#timetableViewPage(class='interior', data-role='page')
 		ul(data-role='listview')
 			li(data-role='list-divider')=date
 				span.ui-li-count=flights.length
-			-each flight in flights
+			-if (flights.length > 0)
+				-each flight in flights
+					li
+						a
+							div.ui-grid-b
+								div.ui-block-a!=(flight.dep + ' ' + flight.source)
+								div.ui-block-b!=flight.code
+								div.ui-block-a!=(flight.arr + ' ' + flight.destination)
+								div.ui-block-b!=flight.duration
+			-else
 				li
-					a
-						div.ui-grid-b
-							div.ui-block-a!=(flight.dep + ' ' + flight.source)
-							div.ui-block-b!=flight.code
-							div.ui-block-a!=(flight.arr + ' ' + flight.destination)
-							div.ui-block-b!=flight.duration
+					div
+						span There are no flights scheduled for this date
+
 					
