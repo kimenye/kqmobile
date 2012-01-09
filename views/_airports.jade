@@ -1,4 +1,4 @@
-select(id=name)
+select(id=name,name=name)
 	- each airport in airports
 		- if (def != airport.code) 
 			option(value=airport.code)!= airport.name

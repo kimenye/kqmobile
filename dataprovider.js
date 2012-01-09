@@ -10,10 +10,22 @@ var AirportSchema = new Schema({
   , name   :  { type: String }
 });
 
+//{source: 'NBO', destination: 'MBA', code: 'KQ 604', dep: '09:30', arr: '10:30', equipment: 'Boeing 737-300', days: 'A'}
+var FlightSchema = new Schema({
+	source : {type: String},
+	destination : {type: String},
+	code: {type: String},
+	dep: {type: String},
+	arr: {type: String},
+	equipment: {type: String},
+	days: {type: String}
+})
+
 /**
  * Define model
  */
 var Airport = mongoose.model('Airport', AirportSchema);
+var Flight = mongoose.model('Flight', FlightSchema);
 
 DataProvider=function() {};
 // DataProvider.prototype.data = [];
@@ -22,6 +34,22 @@ DataProvider=function() {};
 // 	callback( null, this.data )
 // };
 
+/**
+ * Create a paged timetable
+ */
+DataProvider.prototype.timetable = function(callback,from,to,dep,arr,page) {
+	Flight.find({}, function(error, docs) {
+		if(error) callback (error)
+		else {
+			console.log("Number of results is " + docs.length);
+			callback(null, docs);
+		}
+	});
+};
+
+/**
+ * Find all the airports and return
+ */
 DataProvider.prototype.findAllAirports = function(callback) {
 	Airport.find({}, function(error, docs) {
 		if (error) callback(error)
