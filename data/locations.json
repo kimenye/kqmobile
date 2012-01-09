@@ -1,0 +1,2 @@
+{ town: 'Nairobi', name: 'Sarit Center Sales and Ticketting Office', geo: 'Sarit Centre', country: 'Kenya', type: 'KQ', services: 'Sales,Ticketting' }
+{ town: 'Nairobi', name: 'Barclays Plaza', geo: 'Barclays Plaza, Loita Street, Nairobi', country: 'Kenya', type: 'KQ', services: 'Sales,Ticketting' }

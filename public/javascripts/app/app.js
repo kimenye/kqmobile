@@ -12,6 +12,26 @@ $( '#planPage' ).live( 'pageinit',function(event){
 	});
 });
 
+$( '#contactsPage' ).live('pageinit', function(event) {
+	if (navigator.geolocation) {
+		navigator.geolocation.getCurrentPosition(
+			function(position) {
+				// alert(position.coords.latitude + "," + position.coords.longitude);
+				var geocoder = new google.maps.Geocoder();
+				var latlng = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
+				
+				geocoder.geocode({'latLng': latlng}, function(results, status) {
+					for(var idx=0;idx<results.length;idx++)
+						//alert(results[idx].formatted_address);
+				});
+				
+			}, 
+			function(msg) {
+				alert(msg);
+			}
+		);
+	}
+});
 
 // $( '#timetablePage' ).live( 'pageinit',function(event){
 // 	// $('#dep_date').val(new Date.today().toString("yyyy-MM-dd"));

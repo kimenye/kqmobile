@@ -21,6 +21,16 @@ var FlightSchema = new Schema({
 	equipment: {type: String},
 	days: {type: String},
 	duration: {type: String}
+});
+
+//{ town: 'Nairobi', name: 'Barclays Plaza', geo: 'Barclays Plaza, Loita Street, Nairobi', country: 'Kenya', type: 'KQ', services: 'Sales,Ticketting' }
+var LocationSchema = new Schema({
+	town : {type: String},
+	name : {type: String},
+	geo : {type: String},
+	country  : {type: String},
+	type : {type: String},
+	services : {type: String}
 })
 
 /**
@@ -28,14 +38,23 @@ var FlightSchema = new Schema({
  */
 var Airport = mongoose.model('Airport', AirportSchema);
 var Flight = mongoose.model('Flight', FlightSchema);
+var Location = mongoose.model('Location', LocationSchema);
 
 
 DataProvider=function() {};
 // DataProvider.prototype.data = [];
 
-// DataProvider.prototype.findAll = function(callback) {
-// 	callback( null, this.data )
-// };
+
+//find locations
+DataProvider.prototype.findLocations = function(callback) {
+	Location.find({}, function(error, locs) {
+		if(error) callback(error)
+		else {
+			console.log(locs.length);
+			callback(locs);
+		}
+	});
+};
 
 DataProvider.prototype.findFlight = function(callback,flight_code) {
 	Flight.findOne({ code: flight_code}, function(error, flight) {

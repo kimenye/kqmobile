@@ -116,6 +116,14 @@ app.get('/select', function(req, res) {
 
 });
 
+app.get('/contact', function(req,res) {
+	//res.render('contact', { layout: 'layout_gmap'});
+	console.log('In contact');
+	data.findLocations(function(locations) {
+		res.render('contact', { layout: 'layout_gmap', locations: locations });
+	});
+});
+
 //Listen on the correct port
 var port = process.env.PORT || 3000;
 app.listen(port, function() {

@@ -1,0 +1,8 @@
+#contactsPage(data-role='page')
+	!=partial('header', { subtitle: 'Contact' })
+	div(data-role='content')
+		ul(data-role='listview')
+			-each location in locations
+				!=partial('location', { location: location})
+#maps(data-role='page')
+	!=partial('header', { subtitle: 'Maps' })
