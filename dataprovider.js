@@ -40,22 +40,35 @@ DataProvider=function() {};
 /**
  * Create a paged timetable
  */
-DataProvider.prototype.timetable = function(callback,from,to,dep,arr,page) {
-	// console.log("From : " + from);
-	var forDay = moment();
-	var day = page || 0;
-	forDay = forDay.add('days',day);
+DataProvider.prototype.timetable = function(callback,from,to,page) {
+	page *= 1;
+	var now = moment().add('days', page);
 	
-	var dayStr = forDay.format('dddd, MMMM Do YYYY');
-	var dayIdx = forDay.format('ddd');
+	var dayStr = now.format('dddd, MMMM Do YYYY');
+	var dayIdx = now.format('ddd');
+	
 	
 	console.log("Requested page " + dayStr + " Day: " + dayIdx);
-	Flight.find({ source: from, destination: to }, function(error, docs) {
+	// Flight.find({ source: from, destination: to, days: /.*A.*/ }, function(error, docs) {
+	// 		if(error) callback (error)
+	// 		else {
+	// 			console.log("Number of flights is " + docs.length);
+	// 			callback(docs, dayStr,day);
+	// 		}
+	// 	});
+	
+	
+	var query = Flight.find({});
+	query.where('source', from);
+	query.where('destination', to);
+	// query.where('days', /.*A.*/);
+	// query.or('days', /.dayIdx.*/);
+	query.exec(function(error,docs) {
 		if(error) callback (error)
 		else {
 			console.log("Number of flights is " + docs.length);
-			callback(docs, dayStr,day);
-		}
+			callback(docs, dayStr, page);
+		}		
 	});
 };
 

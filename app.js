@@ -33,7 +33,7 @@ app.configure('production', function(){
 // Routes
 
 app.get('/', routes.index);
-
+app.post('/', routes.index);
 
 var locations = null;
 data.findAllAirports(function(error, ports) {
@@ -49,18 +49,29 @@ app.get('/timetable', function(req, res) {
 	res.render('timetable', {subtitle: 'Timetable', airports: locations});
 });
 
-app.post('/timetable', function(req, res) {
+app.get('/timetable_view', function(req, res) {
 	// console.log("Action is " + req.param('action'));
 	var action = req.param('action');
 	var from = req.param('from_airport');
 	var to = req.param('to_airport');
-	// var dep = req.param('dep_date');
-	// var ret = req.param('rep_date');
+	var page = req.param('page');
+	
+	
+	
+	if (!page)
+		page = 0;
+		
+	console.log("Params: action=" +action+",from="+from+",to="+to+",page="+page);
 	
 	if (action == 'search') {
-		data.timetable(function(flights,forDay) {
-			res.render('timetable_view', {subtitle: "Timetable for "+ from + " - " + to, date: forDay, flights: flights, hdn_source: from});
-		}, from, to);
+		data.timetable(function(flights,forDay,page) {
+			res.render('timetable_view', {subtitle: "Timetable for "+ from + " - " + to, 
+				date: forDay, 
+				flights: flights, 
+				hdn_source: from, 
+				hdn_dest: to,
+				page: page});
+		}, from, to, page);
 	}
 	
 });
