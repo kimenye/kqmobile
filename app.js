@@ -71,13 +71,14 @@ app.get('/plan_view', function(req, res) {
 				next_url: next_url,
 				prev_url: prev_url,
 				flight_type: flight_type,
-				page: page});
+				page: page,
+				layout: 'layout_lite'});
 		}, from, to, page,"plan_view");
 	// }	
 });
 
 app.get('/timetable', function(req, res) {
-	res.render('timetable', {subtitle: 'Timetable', airports: locations});
+	res.render('timetable', {subtitle: 'Timetable', airports: locations, layout: 'layout_lite'});
 });
 
 app.get('/timetable_view', function(req, res) {
@@ -99,7 +100,8 @@ app.get('/timetable_view', function(req, res) {
 				flights: flights, 
 				next_url: next_url,
 				prev_url: prev_url,
-				page: page});
+				page: page,
+				layout: 'layout_lite'});
 		}, from, to, page,"timetable_view");
 	}
 	
@@ -126,12 +128,12 @@ app.get('/contacts', function(req,res) {
 app.get('/contact', function(req, res) {
 	var loc = req.param('name');
 	data.findLocationByName(function(location) {
-		res.render('contact', { contact: location});
+		res.render('contact', { contact: location, layout: 'layout_lite'});
 	}, loc);
 });
 
 app.get('/offers', function(req, res) {
-	res.render('special_offers', { subtitle: 'Special Offers '});
+	res.render('special_offers', { subtitle: 'Special Offers', layout: 'layout_lite'});
 });
 
 //Listen on the correct port
