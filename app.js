@@ -123,6 +123,10 @@ app.get('/contact', function(req,res) {
 	});
 });
 
+app.get('/offers', function(req, res) {
+	res.render('special_offers', { subtitle: 'Special Offers '});
+});
+
 //Listen on the correct port
 var port = process.env.PORT || 3000;
 app.listen(port, function() {
