@@ -1,7 +1,16 @@
 .logo {
 	text-align: center;
+	margin: 0px;
 }
 
+
+/*.ui-bar-a {
+	background-color: #BF000E;
+	background-image: url(/images/favicon.png);
+	background-position: center top;
+	background-repeat: no-repeat;
+}
+*/
 .logoimg {
 	max-width: 100%;
 }
