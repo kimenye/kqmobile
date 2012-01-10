@@ -22,7 +22,7 @@ $( '#contactsPage' ).live('pageinit', function(event) {
 				
 				geocoder.geocode({'latLng': latlng}, function(results, status) {
 					for(var idx=0;idx<results.length;idx++)
-						//alert(results[idx].formatted_address);
+						console.log(results[idx].formatted_address);
 				});
 				
 			}, 

@@ -50,7 +50,7 @@ DataProvider.prototype.findLocations = function(callback) {
 	Location.find({}, function(error, locs) {
 		if(error) callback(error)
 		else {
-			console.log(locs.length);
+			// console.log(locs.length);
 			callback(locs);
 		}
 	});
