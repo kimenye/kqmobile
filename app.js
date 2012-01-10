@@ -111,7 +111,7 @@ app.get('/select', function(req, res) {
 	var price = req.param('price');
 		
 	data.findFlight(function(flight) {
-		res.render('select', { subtitle: 'Add to Selection', flight: flight, when: when, price: price});
+		res.render('select', { subtitle: 'Add Flight', flight: flight, when: when, price: price, layout: 'layout_lite'});
 	}, code);
 
 });
@@ -119,7 +119,7 @@ app.get('/select', function(req, res) {
 app.get('/contacts', function(req,res) {
 	//res.render('contact', { layout: 'layout_gmap'});
 	data.findLocations(function(locations) {
-		res.render('contacts', { layout: 'layout_gmap', locations: locations });
+		res.render('contacts', { layout: 'layout_lite', locations: locations });
 	});
 });
 

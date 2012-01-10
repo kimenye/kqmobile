@@ -1,9 +1,9 @@
-div(data-role='page')
+div#homePage(data-role='page')
     !=partial('header', { subtitle: 'Home' })
     div(data-role='content')
         ul(data-role='listview')
             li
-              a(href="plan", rel="external") Plan and Book
+              a(href="plan") Plan and Book
             //-li
               //-a(href="checkin") Online Checkin
             li
