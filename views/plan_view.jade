@@ -1,10 +1,9 @@
 div#planViewPage(class='interior', data-role='page')
-	h1.logo
-		a(href="/")
-			img.logoimg(src='images/kq_logo.jpg')
 	div(data-role='header', data-position='inline')
 		-if (page > 0)
 			a#btn-next-timetable(data-role="button", class="ui-btn-left", data-icon="arrow-l", data-iconpos="left", href=prev_url) Prev
+		-else
+			a#btn-next-timetable(data-role="button", class="ui-btn-left", data-icon="arrow-l", data-iconpos="left", href="/") Home
 		h1=subtitle
 		-if (page < 6)
 			a#btn-next-timetable(data-role="button", class="ui-btn-right", data-icon="arrow-r", data-iconpos="right", href=next_url) Next

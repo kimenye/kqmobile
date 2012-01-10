@@ -1,5 +1,5 @@
 div#timetablePage(class='interior', data-role='page', data-add-back-btn="true", data-back-btn-text="Back")
-	!=partial('header', { title: 'Timetable' })
+	!=partial('header_nologo', { title: 'Timetable' })
 	div.ui-content(data-role='content')
 		div.content-primary
 			form#frmTimetable(action='/timetable_view', method="get",data-ajax="true")
