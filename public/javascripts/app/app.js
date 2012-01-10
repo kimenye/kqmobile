@@ -2,14 +2,14 @@ $( '#planPage' ).live( 'pageinit',function(event){
 	// $('#dep_date').val(new Date.today().toString("yyyy-MM-dd"));
 	// $('#ret_date').val(new Date.today().add(3).days().toString("yyyy-MM-dd"));
 	
-	$( "#type_slider" ).bind( "change", function(event) {
-		// alert($( "#type_slider" ).val());
-		// if ('type')
-		var val = ( "#type_slider" ).val();
-		if (val == 'one-way') {
-			$('#ret_date').textinput('disable');
-		}
-	});
+	// $( "#type_slider" ).bind( "change", function(event) {
+	// 	// alert($( "#type_slider" ).val());
+	// 	// if ('type')
+	// 	var val = ( "#type_slider" ).val();
+	// 	if (val == 'one-way') {
+	// 		$('#ret_date').textinput('disable');
+	// 	}
+	// });
 });
 
 $( '#contactsPage' ).live('pageinit', function(event) {

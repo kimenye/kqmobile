@@ -116,11 +116,18 @@ app.get('/select', function(req, res) {
 
 });
 
-app.get('/contact', function(req,res) {
+app.get('/contacts', function(req,res) {
 	//res.render('contact', { layout: 'layout_gmap'});
 	data.findLocations(function(locations) {
-		res.render('contact', { layout: 'layout_gmap', locations: locations });
+		res.render('contacts', { layout: 'layout_gmap', locations: locations });
 	});
+});
+
+app.get('/contact', function(req, res) {
+	var loc = req.param('name');
+	data.findLocationByName(function(location) {
+		res.render('contact', { contact: location});
+	}, loc);
 });
 
 app.get('/offers', function(req, res) {

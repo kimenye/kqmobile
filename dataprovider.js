@@ -30,7 +30,11 @@ var LocationSchema = new Schema({
 	geo : {type: String},
 	country  : {type: String},
 	type : {type: String},
-	services : {type: String}
+	services : {type: String},
+	tel1 : {type: String},
+	tel2type : {type: String},
+	tel2 : {type: String},
+	email: {type: String}
 })
 
 /**
@@ -44,6 +48,15 @@ var Location = mongoose.model('Location', LocationSchema);
 DataProvider=function() {};
 // DataProvider.prototype.data = [];
 
+DataProvider.prototype.findLocationByName = function(callback, name) {
+	console.log("Finding location with name " + name);
+	Location.findOne({ name: name}, function(error, location) {
+		if (error) callback(error)
+		else {
+			callback(location)
+		}
+	});
+};
 
 //find locations
 DataProvider.prototype.findLocations = function(callback) {

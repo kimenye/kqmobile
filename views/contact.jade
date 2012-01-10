@@ -1,16 +1,16 @@
-#contactsPage(data-role='page')
+#contactsPage.interior(data-role='page', data-add-back-btn="true", data-back-btn-text="Back")
 	!=partial('header', { subtitle: 'Contact' })
-	div(data-role='content')
-		//-div(data-role='controlgroup', data-type='horizontal')
-			//-a(data-role="button") Sales &amp; Ticketting
-			//-a(data-role="button") Contact Center
-		//-br
-		ul(data-role='listview')
-			-each location in locations
-				!=partial('location', { location: location})
-	.ui-bar(data-role='footer', data-position='inline')
-		label(for='contact_type')
-		select#contact_type(name='contact_type')
-			option(value='sales_and_ticketting') Sales and ticketting
-#maps(data-role='page')
-	!=partial('header', { subtitle: 'Maps' })
+	//-<td width="35%" valign="top"><p><strong>Contact Center</strong><br /><strong>Tel:</strong> +254-(0)20- 3274747 <br /><strong>Safaricom:</strong> +254-0711-02-4747<br /><strong>Airtel:</strong> +254-0734-10-4747<br /><strong>Fax:</strong> + 254-20-336252<br /><strong>Email:</strong> <a href="mailto:reservations@kenya-airways.com">reservations@kenya-airways.com</a> </p>
+	h4=contact.name
+	p
+		strong Tel:
+		span
+			a(href="tel:#{contact.tel1}")#{contact.tel1}
+	p
+		strong #{contact.tel2type} :
+		span
+			a(href="tel:#{contact.tel2}")#{contact.tel2}
+	p
+		strong Email:
+		span
+			a(href="mailto:#{contact.email}")#{contact.email}

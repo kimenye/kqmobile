@@ -1,0 +1,17 @@
+#contactsPage.interior(data-role='page', data-add-back-btn="true", data-back-btn-text="Back")
+	!=partial('header', { subtitle: 'Contact' })
+	div(data-role='content')
+		//-div(data-role='controlgroup', data-type='horizontal')
+			//-a(data-role="button") Sales &amp; Ticketting
+			//-a(data-role="button") Contact Center
+		//-br
+		ul(data-role='listview')
+			-each location in locations
+				!=partial('location', { location: location})
+	.ui-bar(data-role='footer', data-position='inline')
+		label(for='contact_type')
+		select#contact_type(name='contact_type')
+			option(value='sales_and_ticketting') Sales and ticketting
+			option(value='contact_centres') Contact Centres
+#maps(data-role='page')
+	!=partial('header', { subtitle: 'Maps' })
