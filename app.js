@@ -118,6 +118,13 @@ app.get('/select', function(req, res) {
 
 });
 
+app.get('/contacts_raw', function(req, res) {
+	var type = req.param('type');
+	data.findLocationsByType(function(locations) {
+		res.json(locations);
+	}, type);
+});
+
 app.get('/contacts', function(req,res) {
 	//res.render('contact', { layout: 'layout_gmap'});
 	data.findLocations(function(locations) {

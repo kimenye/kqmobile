@@ -58,6 +58,14 @@ DataProvider.prototype.findLocationByName = function(callback, name) {
 	});
 };
 
+DataProvider.prototype.findLocationsByType = function(callback, type) {
+	Location.find({}, function(error, locs) {
+		if (error) callback(error)
+		else
+			callback(locs);
+	});
+};
+
 //find locations
 DataProvider.prototype.findLocations = function(callback) {
 	Location.find({}, function(error, locs) {
