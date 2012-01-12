@@ -4,9 +4,3 @@
 	!=partial('header_nologo', { subtitle: 'Map' })
 	.ui-content(data-role='content')
 		#map-canvas
-	.ui-bar(data-role='footer', data-position='inline')
-		div(data-role='controlgroup', data-type='horizontal')
-			a(href="map", data-role="button", data-icon="search") Map
-			a#nearest_me(href="contacts?type=nearest_me", data-role="button", data-icon="gear") Nearby
-			a(href="contacts?type=contact_centers", data-role="button", data-icon="arrow-d") Phone
-			a(href="contacts?type=sales", data-role="button", data-icon="arrow-d") Sales
