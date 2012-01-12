@@ -12,13 +12,10 @@ $( '#planPage' ).live( 'pageinit',function(event){
 	// });
 });
 
-// var CurrentLocation = function(geo_location) {
-// 	
-// 	this.
-// };
-
-function CurrentLocation(geo_location) {
+function CurrentLocation(geo_location, lat, lon) {
 	this.locations = geo_location;
+	this.lat = lat;
+	this.lon = lon;
 }
 
 CurrentLocation.prototype.country = function() {
@@ -28,7 +25,11 @@ CurrentLocation.prototype.country = function() {
 
 CurrentLocation.prototype.town = function() {
 	return this.locations[this.locations.length-2].formatted_address;
-}
+};
+
+CurrentLocation.prototype.latlong = function() {
+	return new google.maps.LatLng(this.lat, this.lon);
+};
 
 var geoLocation = null;
 
@@ -43,7 +44,7 @@ $( '#homePage' ).live('pageinit', function(event) {
 				geocoder.geocode({'latLng': latlng}, function(results, status) {
 					// for(var idx=0;idx<results.length;idx++)
 					// 						console.log(results[idx].formatted_address);
-					geoLocation = new CurrentLocation(results);
+					geoLocation = new CurrentLocation(results, position.coords.latitude, position.coords.longitude);
 					console.log("Country is " + geoLocation.country() + " And town is " + geoLocation.town());
 				});
 				
@@ -54,19 +55,3 @@ $( '#homePage' ).live('pageinit', function(event) {
 		);
 	}
 });
-
-// $( '#timetablePage' ).live( 'pageinit',function(event){
-// 	// $('#dep_date').val(new Date.today().toString("yyyy-MM-dd"));
-// 	// $('#ret_date').val(new Date.today().add(3).days().toString("yyyy-MM-dd"));
-// });
-// 
-// 
-// $('#timetableViewPage').live('pageinit', function(event) {
-// 	// alert('Page ready');
-// 	$('#btn-next-timetable').click(function(e) {
-// 		// e.stopImmediatePropagation();
-// 	    // e.preventDefault();
-// 		// alert('You clicked next');
-// 		$('#frmTimetableView').submit();
-// 	});
-// });

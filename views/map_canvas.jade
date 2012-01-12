@@ -1,0 +1,6 @@
+.page-map(data-role='page', data-add-back-btn="true", data-back-btn-text="Back")
+	script(src='javascripts/app/map.js')
+	link(rel='stylesheet', href='/stylesheets/map.css')
+	!=partial('header_nologo', { subtitle: 'Map' })
+	.ui-content(data-role='content')
+		#map-canvas

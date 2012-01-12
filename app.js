@@ -48,7 +48,7 @@ app.get('/plan', function(req, res) {
 	var dep = now.format("YYYY-MM-DD");
 	var ret = now.add('days',3).format("YYYY-MM-DD");
 	
-	res.render('plan', {subtitle: 'Plan', airports: locations, dep_date: dep, ret_date: ret});
+	res.render('plan', {subtitle: 'Plan', airports: locations, dep_date: dep, ret_date: ret, layout: 'layout_lite'});
 });
 
 app.get('/plan_view', function(req, res) {
@@ -134,6 +134,10 @@ app.get('/contact', function(req, res) {
 
 app.get('/offers', function(req, res) {
 	res.render('special_offers', { subtitle: 'Special Offers', layout: 'layout_lite'});
+});
+
+app.get('/map', function(req, res) {
+	res.render('map_canvas', { subtitle: 'Map' });
 });
 
 //Listen on the correct port
