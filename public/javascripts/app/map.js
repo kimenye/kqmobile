@@ -25,12 +25,14 @@ $('.page-map').live("pagecreate", function() {
 	function createLatLong(pos) {
 		if( pos.coords )
 		{ 
-			lat = pos.coords.latitude;
-			lng = pos.coords.longitude;
+			var lat = pos.coords.latitude;
+			var lng = pos.coords.longitude;
+			return new google.maps.LatLng(lat, lng);
 		}
 		else{
-			lat = pos.latitude;
-			lng = pos.longitude;
+			var lat = pos.latitude;
+			var lng = pos.longitude;
+			return new google.maps.LatLng(lat, lng);
 		}
 	}
 	
@@ -61,37 +63,41 @@ $('.page-map').live("pagecreate", function() {
 	 * To be refactored as it is very innefficient
 	 */
 	function onSuccess(map,data) {
-		console.log("Request was successful " + data);
+		// console.log("Request was successful " + data);
 		
-		var geocoder = new google.maps.Geocoder();
+		// var geocoder = new google.maps.Geocoder();
+		var bounds = new google.maps.LatLngBounds();
 		for(var idx=0;idx<data.length;idx++) {
-			console.log(data[idx].name);
+			var loc = data[idx];
+			console.log(loc.name);
 			
-			geocoder.geocode( { 'address': data[idx].geo}, function(results, status) {
-	      		if (status == google.maps.GeocoderStatus.OK) {
-		        	map.setCenter(results[0].geometry.location);
-		        	var marker = new google.maps.Marker({
-		            	map: map,
-						animation: google.maps.Animation.DROP,
-						icon: 'images/kq_icon.jpg',
-		            	position: results[0].geometry.location
-		        	});
-					createWindow(map,marker,location);
-					
-		      	} else {
-		        	console("Geocode was not successful for the following reason: " + status);
-		      	}
-		    });
+
+			
+			var latlng = new google.maps.LatLng(loc.lat, loc.lon);
+			bounds.extend(latlng);
+			var marker = new google.maps.Marker({
+            	map: map,
+				animation: google.maps.Animation.DROP,
+				icon: 'images/kq_icon.jpg',
+				clickable: true,
+            	position: latlng
+        	});
+			map.setCenter(latlng);
+			createWindow(map,marker,loc);
 		}
+		map.fitBounds(bounds);
 	}
 	
 	function createWindow(map,marker,location) {
 		// var name = data[idx].name;
+		console.log("Creating window for " + location.name);
 		var infowindow = new google.maps.InfoWindow(
 	      	{ content: location.name,
 	        	size: new google.maps.Size(50,50)
 	      	});
 		google.maps.event.addListener(marker, 'click', function() {
+			console.log("Clicked the marker " + marker);
+			infowindow.open(map,marker);
 		    // map.setZoom(8);
 		    // 			console.log("Clicked the map");
 		    // 			infowindow.open(map,marker);

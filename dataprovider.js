@@ -28,6 +28,8 @@ var LocationSchema = new Schema({
 	town : {type: String},
 	name : {type: String},
 	geo : {type: String},
+	lat: {type: Number},
+	lon: {type: Number},
 	country  : {type: String},
 	type : {type: String},
 	services : {type: String},
