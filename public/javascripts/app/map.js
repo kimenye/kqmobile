@@ -4,6 +4,8 @@
 $('.page-map').live("pagecreate", function() {
 	console.log('creating map');
 	
+	var infowindow = new google.maps.InfoWindow();
+	
 	if (geoLocation) {
 		console.log('We already have the users position');
 		gpsSuccess(null, geoLocation.latlong());
@@ -21,6 +23,7 @@ $('.page-map').live("pagecreate", function() {
 	// 		lng = google.loader.ClientLocation.longitude;
 	// 	});			
 	// 	*/
+	
 	
 	function createLatLong(pos) {
 		if( pos.coords )
@@ -88,13 +91,23 @@ $('.page-map').live("pagecreate", function() {
 	
 	function createWindow(map,marker,location) {
 		//console.log("Creating window for " + location.name);
-		var infowindow = new google.maps.InfoWindow({ 
-			content: buildInfoWindow(location)//,
-        	// size: new google.maps.Size(50,50)
-	    });
+		// var infowindow = new google.maps.InfoWindow({ 
+		// 			content: buildInfoWindow(location)//,
+		//         	// size: new google.maps.Size(50,50)
+		// 	    });
 	
 		google.maps.event.addListener(marker, 'click', function() {
 			console.log("Clicked the marker " + marker);
+			// infowindow.close();
+			// 			
+			// 			infowindow.setContent(buildInfoWindow(location));
+			if (infowindow) {
+				infowindow.close();
+				$("#InfoWindowPane").html('');
+			}
+			infowindow = new google.maps.InfoWindow({ 
+				content: buildInfoWindow(location)
+			});
 			infowindow.open(map,marker);
 		});
 	}
