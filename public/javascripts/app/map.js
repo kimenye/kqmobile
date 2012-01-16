@@ -64,8 +64,6 @@ $('.page-map').live("pagecreate", function() {
 	 */
 	function onSuccess(map,data) {
 		// console.log("Request was successful " + data);
-		
-		// var geocoder = new google.maps.Geocoder();
 		var bounds = new google.maps.LatLngBounds();
 		for(var idx=0;idx<data.length;idx++) {
 			var loc = data[idx];
@@ -89,19 +87,36 @@ $('.page-map').live("pagecreate", function() {
 	}
 	
 	function createWindow(map,marker,location) {
-		// var name = data[idx].name;
-		console.log("Creating window for " + location.name);
-		var infowindow = new google.maps.InfoWindow(
-	      	{ content: location.name,
-	        	size: new google.maps.Size(50,50)
-	      	});
+		//console.log("Creating window for " + location.name);
+		var infowindow = new google.maps.InfoWindow({ 
+			content: buildInfoWindow(location)//,
+        	// size: new google.maps.Size(50,50)
+	    });
+	
 		google.maps.event.addListener(marker, 'click', function() {
 			console.log("Clicked the marker " + marker);
 			infowindow.open(map,marker);
-		    // map.setZoom(8);
-		    // 			console.log("Clicked the map");
-		    // 			infowindow.open(map,marker);
-			// $.mobile.changePage('#contactPage', {transition: 'pop', role: 'dialog'});   
 		});
+	}
+	
+	function buildInfoWindow(location) {
+		var iwContent   = '<div id="InfoWindow">';
+		iwContent  += '<div>' + location.name + '</div>';
+		iwContent += '<div class="iwGeo">' + location.geo + '</div>'
+		iwContent  += '<ul data-role="listview" data-inset="true" id="InfoWindowList">';
+		
+		iwContent += '<li data-role="list-divider"><div>Phone Number</div></li>';
+		iwContent += '<li><a href="tel:' + location.tel1 + '">' +  location.tel1 + '</a></li>';
+				
+		iwContent += '</ul></div></div>';
+		
+		$("#InfoWindowPane").html(iwContent);
+        
+        $("#InfoWindowList").listview({"inset": true});
+        
+       	iwContent = $("#InfoWindowPane").html();
+				
+		// console.log("Content: " + iwContent);
+		return iwContent;
 	}
 });

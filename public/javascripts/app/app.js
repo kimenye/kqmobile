@@ -35,6 +35,7 @@ var geoLocation = null;
 
 $( '#homePage' ).live('pageinit', function(event) {
 	if (navigator.geolocation) {
+		//$.mobile.showPageLoadingMsg();
 		navigator.geolocation.getCurrentPosition(
 			function(position) {
 				// alert(position.coords.latitude + "," + position.coords.longitude);
