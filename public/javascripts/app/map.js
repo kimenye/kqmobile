@@ -13,7 +13,10 @@ $('.page-map').live("pagecreate", function() {
 	else {
 		console.log("We don't have the users position");
 		if (navigator.geoLocation) {
-			navigator.geolocation.getCurrentPosition(gpsSuccess, function() { console.log ("Could not geolocate")}, {enableHighAccuracy:true, maximumAge: 300000});
+			navigator.geolocation.getCurrentPosition(gpsSuccess, function() { 
+					console.log ("Could not geolocate");
+					gpsSuccess(new google.maps.LatLng(-1.292066, 36.821946), null);
+				}, {enableHighAccuracy:true, maximumAge: 300000});
 		}
 	}
 	// 	/*

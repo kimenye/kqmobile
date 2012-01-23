@@ -20,11 +20,22 @@ function CurrentLocation(geo_location, lat, lon) {
 
 CurrentLocation.prototype.country = function() {
 	// var country = null;
-	return this.locations[this.locations.length-1].formatted_address;
+	if (this.locations) {
+		return this.locations[this.locations.length-1].formatted_address;
+	}
+	else
+	{
+		return "Kenya";
+	}
 };
 
 CurrentLocation.prototype.town = function() {
-	return this.locations[this.locations.length-2].formatted_address;
+	if (this.locations) {
+		return this.locations[this.locations.length-2].formatted_address;
+	}
+	else {
+		return "Nairobi";
+	}
 };
 
 CurrentLocation.prototype.latlong = function() {
@@ -51,7 +62,9 @@ $( '#homePage' ).live('pageinit', function(event) {
 				
 			}, 
 			function(msg) {
-				alert("Sorry we could not determine your location at this time");
+				//alert("Sorry we could not determine your location at this time");
+				geoLocation = new CurrentLocation(null, -1.292066, 36.821946);
+				console.log("Country is " + geoLocation.country() + " And town is " + geoLocation.town());
 			}
 		);
 	}
