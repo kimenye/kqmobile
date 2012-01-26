@@ -21,7 +21,7 @@ div#planViewPage(class='interior', data-role='page')
 								div.ui-block-a!=(flight.arr + ' ' + flight.destination)
 								div.ui-block-b!=flight.duration
 								div.ui-block-c
-									span 119$
+									span!=flight.price
 			-else
 				li
 					div

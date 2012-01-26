@@ -13,6 +13,7 @@ var AirportSchema = new Schema({
 
 //{source: 'NBO', destination: 'MBA', code: 'KQ 604', dep: '09:30', arr: '10:30', equipment: 'Boeing 737-300', days: 'A'}
 var FlightSchema = new Schema({
+	airline: {type: String},
 	source : {type: String},
 	destination : {type: String},
 	code: {type: String},
@@ -20,11 +21,13 @@ var FlightSchema = new Schema({
 	arr: {type: String},
 	equipment: {type: String},
 	days: {type: String},
-	duration: {type: String}
+	duration: {type: String},
+	price: {type: String}
 });
 
 //{ town: 'Nairobi', name: 'Barclays Plaza', geo: 'Barclays Plaza, Loita Street, Nairobi', country: 'Kenya', type: 'KQ', services: 'Sales,Ticketting' }
 var LocationSchema = new Schema({
+	airline: {type: String},
 	town : {type: String},
 	name : {type: String},
 	geo : {type: String},
@@ -37,7 +40,14 @@ var LocationSchema = new Schema({
 	tel2type : {type: String},
 	tel2 : {type: String},
 	email: {type: String}
-})
+});
+
+// { airline: 'fly540', heading: 'Special offer to US$60 Mombasa', detail: 'Fly540 special offer US$60 to Mombasa, book in the next month to qualify'}
+var OfferSchema = new Schema({
+	airline: {type: String},
+	heading: {type: String},
+	detail: {type: String}
+});
 
 /**
  * Define model
@@ -45,10 +55,20 @@ var LocationSchema = new Schema({
 var Airport = mongoose.model('Airport', AirportSchema);
 var Flight = mongoose.model('Flight', FlightSchema);
 var Location = mongoose.model('Location', LocationSchema);
+var Offer = mongoose.model('Offer', OfferSchema);
 
 
 DataProvider=function() {};
 // DataProvider.prototype.data = [];
+
+DataProvider.prototype.findOffersByAirline = function(callback, airline) {
+	Offer.find({ airline: airline }, function(error, offers) {
+		if (error) callback(error)
+		else {
+			callback(offers);
+		}
+	});
+};
 
 DataProvider.prototype.findLocationByName = function(callback, name) {
 	console.log("Finding location with name " + name);
@@ -60,8 +80,8 @@ DataProvider.prototype.findLocationByName = function(callback, name) {
 	});
 };
 
-DataProvider.prototype.findLocationsByType = function(callback, type) {
-	Location.find({ type: type}, function(error, locs) {
+DataProvider.prototype.findLocationsByTypeAndAirline = function(callback, type, airline) {
+	Location.find({ type: type, airline: airline}, function(error, locs) {
 		if (error) callback(error)
 		else
 			callback(locs);
@@ -69,8 +89,8 @@ DataProvider.prototype.findLocationsByType = function(callback, type) {
 };
 
 //find locations
-DataProvider.prototype.findLocations = function(callback) {
-	Location.find({}, function(error, locs) {
+DataProvider.prototype.findLocations = function(callback, airline) {
+	Location.find({airline: airline}, function(error, locs) {
 		if(error) callback(error)
 		else {
 			// console.log(locs.length);
@@ -91,21 +111,12 @@ DataProvider.prototype.findFlight = function(callback,flight_code) {
 /**
  * Create a paged timetable
  */
-DataProvider.prototype.timetable = function(callback,from,to,page,base_url) {
+DataProvider.prototype.timetable = function(callback,from,to,page,base_url,airline) {
 	page = parseInt(page);
 	var now = moment().add('days', page);
 	
 	var dayStr = now.format('dddd, MMMM Do YYYY');
 	var dayIdx = now.format('ddd');
-	// console.log("Requested page " + dayStr + " Day: " + dayIdx);
-	
-	// Flight.find({ source: from, destination: to, days: /.*A.*/ }, function(error, docs) {
-	// 		if(error) callback (error)
-	// 		else {
-	// 			console.log("Number of flights is " + docs.length);
-	// 			callback(docs, dayStr,day);
-	// 		}
-	// 	});
 	
 	var next_url = "#";
 	var prev_url = "#";
@@ -123,6 +134,7 @@ DataProvider.prototype.timetable = function(callback,from,to,page,base_url) {
 	
 	var query = Flight.find({});
 	query.where('source', from);
+	query.where('airline', airline);
 	query.where('destination', to);
 	query.where('days', regExp);
 	query.exec(function(error,docs) {

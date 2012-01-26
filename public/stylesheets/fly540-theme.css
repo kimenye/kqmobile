@@ -1,0 +1,15 @@
+.logo {
+	background: #FF6600;
+}
+
+.ui-body-c, .ui-dialog.ui-overlay-c {
+	background: #FFFFFF;
+}
+
+.ui-bar-a, .ui-btn-up-b {
+	background: #FF6600;
+}
+
+.ui-bar-b {
+	background: black;
+}

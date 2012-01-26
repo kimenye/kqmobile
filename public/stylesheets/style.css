@@ -1,7 +1,16 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+.logo {
+  text-align: center;
+  margin: 0px;
 }
-a {
-  color: #00b7ff;
+.logoimg {
+  max-width: 100%;
+}
+.ui-body-c,
+.ui-dialog.ui-overlay-c {
+  background: #fff;
+}
+.ui-btn-up-c,
+.ui-btn-hover-c {
+  font-weight: normal;
+  font-size: 12px;
 }

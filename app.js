@@ -4,13 +4,15 @@
  */
 
 var express = require('express')
-  , routes = require('./routes')
+  // , routes = require('./routes')
   , moment = require('moment');
 
 var app = module.exports = express.createServer();
 
 var DataProvider = require('./dataprovider').DataProvider;
 var data = new DataProvider();
+var client = process.env.CLIENT || "kq";
+var title = "title";
 // Configuration
 
 app.configure(function(){
@@ -21,6 +23,10 @@ app.configure(function(){
   app.use(require('stylus').middleware({ src: __dirname + '/public' }));
   app.use(app.router);
   app.use(express.static(__dirname + '/public'));
+  if (client == "kq")
+    title = "Kenya Airways";
+  else if(client == "fly540")
+    title = "Fly540";
 });
 
 app.configure('development', function(){
@@ -31,10 +37,11 @@ app.configure('production', function(){
   app.use(express.errorHandler()); 
 });
 
-// Routes
-
-app.get('/', routes.index);
-app.post('/', routes.index);
+app.get('/', function(req, res) {
+  	var ver = process.env.CLIENT || "kq";
+	console.log("Version is " + ver);
+	res.render('index', { version: ver, title: title })
+});
 
 var locations = null;
 data.findAllAirports(function(error, ports) {
@@ -61,7 +68,7 @@ app.get('/plan_view', function(req, res) {
 	if (!page)
 		page = 0;
 		
-	console.log("Params: action=" +action+",from="+from+",to="+to+",page="+page);
+	// console.log("Params: action=" +action+",from="+from+",to="+to+",page="+page);
 	
 	// if (action == 'search') {
 		data.timetable(function(flights,forDay,page,prev_url,next_url) {
@@ -73,7 +80,7 @@ app.get('/plan_view', function(req, res) {
 				flight_type: flight_type,
 				page: page,
 				layout: 'layout_lite'});
-		}, from, to, page,"plan_view");
+		}, from, to, page,"plan_view", client);
 	// }	
 });
 
@@ -91,7 +98,7 @@ app.get('/timetable_view', function(req, res) {
 	if (!page)
 		page = 0;
 		
-	console.log("Params: action=" +action+",from="+from+",to="+to+",page="+page);
+	// console.log("Params: action=" +action+",from="+from+",to="+to+",page="+page);
 	
 	if (action == 'search') {
 		data.timetable(function(flights,forDay,page,prev_url,next_url) {
@@ -102,7 +109,7 @@ app.get('/timetable_view', function(req, res) {
 				prev_url: prev_url,
 				page: page,
 				layout: 'layout_lite'});
-		}, from, to, page,"timetable_view");
+		}, from, to, page,"timetable_view", client);
 	}
 	
 });
@@ -120,16 +127,15 @@ app.get('/select', function(req, res) {
 
 app.get('/contacts_raw', function(req, res) {
 	var type = req.param('type');
-	data.findLocationsByType(function(locations) {
+	data.findLocationsByTypeAndAirline(function(locations) {
 		res.json(locations);
-	}, type);
+	}, type, client);
 });
 
 app.get('/contacts', function(req,res) {
-	//res.render('contact', { layout: 'layout_gmap'});
 	data.findLocations(function(locations) {
 		res.render('contacts', { layout: 'layout_lite', locations: locations });
-	});
+	}, client);
 });
 
 app.get('/contact', function(req, res) {
@@ -140,15 +146,21 @@ app.get('/contact', function(req, res) {
 });
 
 app.get('/offers', function(req, res) {
-	res.render('special_offers', { subtitle: 'Special Offers', layout: 'layout_lite'});
+	data.findOffersByAirline(function(offers) {
+		res.render('special_offers', { subtitle: 'Special Offers', layout: 'layout_lite', offers: offers});
+	}, client);
 });
 
 app.get('/map', function(req, res) {
-	res.render('map_canvas', { subtitle: 'Map' });
+	res.render('map_canvas', { subtitle: 'Map', title: title, version: client });
 });
 
 //Listen on the correct port
 var port = process.env.PORT || 3000;
+
+
+console.log("The client is " + client);
+
 app.listen(port, function() {
   console.log("Listening on " + port);
 });

@@ -2,6 +2,10 @@
 	script(src='javascripts/app/map.js')
 	link(rel='stylesheet', href='/stylesheets/map.css')
 	!=partial('header_nologo', { subtitle: 'Map' })
+	//-.ui-bar(data-position='fixed')
+		//-div(data-role='controlgroup', data-type='horizontal')
+			//-a#nearest_me(href="#", data-role="button", data-icon="gear") Near me
 	.ui-content(data-role='content')
 		#map-canvas
 		#InfoWindowPane.hidden
+	
