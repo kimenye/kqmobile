@@ -147,6 +147,8 @@ app.get('/contact', function(req, res) {
 });
 
 app.get('/offers', function(req, res) {
+	var ua = req.headers['user-agent'];
+	console.log("Agent: " + ua);
 	data.findOffersByAirline(function(offers) {
 		res.render('special_offers', { subtitle: 'Special Offers', layout: 'layout_lite', offers: offers});
 	}, client);
