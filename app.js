@@ -135,7 +135,7 @@ app.get('/contacts_raw', function(req, res) {
 
 app.get('/contacts', function(req,res) {
 	data.findLocations(function(locations) {
-		res.render('contacts', { layout: 'layout_lite', locations: locations });
+		res.render('contacts', { layout: layout(req), locations: locations });
 	}, client);
 });
 
@@ -158,13 +158,19 @@ app.get('/map', function(req, res) {
 
 function layout(req,full) {
 	var ua = req.headers['user-agent'];
-	console.log("Offers Agent: " + ua);
+//	console.log("Offers Agent: " + ua);
 	var operaMiniHeader = 'Opera/9.80 (J2ME/MIDP; Opera Mini/4.2.13212/26.1395; U; en) Presto/2.8.119 Version/10.54';
 	if (ua == operaMiniHeader) {
+		console.log("Returning opera layout");
 		return 'layout_opera';
 	}
-	else 
+	else {
+		if (full)
+			console.log("Returning full layout");
+		else
+			console.log("Returning lite layout");
 		return (full)? 'layout' : 'layout_lite';
+	}
 };
 
 //Listen on the correct port
