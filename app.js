@@ -56,7 +56,7 @@ app.get('/plan', function(req, res) {
 	var dep = now.format("YYYY-MM-DD");
 	var ret = now.add('days',3).format("YYYY-MM-DD");
 	
-	res.render('plan', {subtitle: 'Plan', airports: locations, dep_date: dep, ret_date: ret, layout: 'layout_lite', title: title});
+	res.render('plan', {subtitle: 'Plan', airports: locations, dep_date: dep, ret_date: ret, layout: layout(req), version: client, title: title});
 });
 
 app.get('/plan_view', function(req, res) {
@@ -80,14 +80,15 @@ app.get('/plan_view', function(req, res) {
 				prev_url: prev_url,
 				flight_type: flight_type,
 				page: page,
-				layout: 'layout_lite',
+				layout: layout(req),
+				version: client,
 				title: title});
 		}, from, to, page,"plan_view", client);
 	// }	
 });
 
 app.get('/timetable', function(req, res) {
-	res.render('timetable', {subtitle: 'Timetable', airports: locations, layout: 'layout_lite'});
+	res.render('timetable', {subtitle: 'Timetable', airports: locations, layout: layout(req), title: title, version: client});
 });
 
 app.get('/timetable_view', function(req, res) {
@@ -110,7 +111,9 @@ app.get('/timetable_view', function(req, res) {
 				next_url: next_url,
 				prev_url: prev_url,
 				page: page,
-				layout: 'layout_lite'});
+				layout: layout(req),
+				title: title,
+				version: client });
 		}, from, to, page,"timetable_view", client);
 	}
 	
@@ -122,7 +125,7 @@ app.get('/select', function(req, res) {
 	var price = req.param('price');
 		
 	data.findFlight(function(flight) {
-		res.render('select', { subtitle: 'Add Flight', flight: flight, when: when, price: price, layout: 'layout_lite'});
+		res.render('select', { subtitle: 'Add Flight', flight: flight, when: when, price: price, layout: layout(req), title: title, version: client});
 	}, code);
 
 });
