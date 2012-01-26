@@ -143,13 +143,13 @@ app.get('/contacts', function(req,res) {
 app.get('/contact', function(req, res) {
 	var loc = req.param('name');
 	data.findLocationByName(function(location) {
-		res.render('contact', { contact: location, layout: 'layout_lite'});
+		res.render('contact', { contact: location, layout: layout(req), version: client, title: title});
 	}, loc);
 });
 
 app.get('/offers', function(req, res) {
 	data.findOffersByAirline(function(offers) {
-		res.render('special_offers', { subtitle: 'Special Offers', layout: layout(req), offers: offers});
+		res.render('special_offers', { subtitle: 'Special Offers', layout: layout(req), version: client, offers: offers});
 	}, client);
 });
 
@@ -162,16 +162,15 @@ function layout(req,full) {
 //	console.log("Offers Agent: " + ua);
 	var operaMiniHeader = 'Opera/9.80 (J2ME/MIDP; Opera Mini/4.2.13212/26.1395; U; en) Presto/2.8.119 Version/10.54';
 	if (ua == operaMiniHeader) {
-		console.log("Returning opera layout");
+		// console.log("Returning opera layout");
 		return 'layout_opera';
 	}
 	else {
-		if (full)
-			console.log("Returning full layout");
-		else
-			console.log("Returning lite layout");
+		// if (full)
+		// 	console.log("Returning full layout");
+		// else
+		// 	console.log("Returning lite layout");
 		return (full)? 'layout' : 'layout_lite';
-		// return 'layout_opera';
 	}
 };
 
