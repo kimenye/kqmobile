@@ -38,10 +38,10 @@ app.configure('production', function(){
 });
 
 app.get('/', function(req, res) {
-  	var ver = process.env.CLIENT || "kq";
-	var ua = req.headers['user-agent'];
-	console.log("Version is " + ver + " Agent: " + ua);
-	res.render('index', { version: ver, title: title, layout: layout(req, true) });
+	//   	var ver = process.env.CLIENT || "kq";
+	// var ua = req.headers['user-agent'];
+	// console.log("Version is " + ver + " Agent: " + ua);
+	res.render('index', { version: client, title: title, layout: layout(req, true) });
 });
 
 var locations = null;
@@ -56,7 +56,7 @@ app.get('/plan', function(req, res) {
 	var dep = now.format("YYYY-MM-DD");
 	var ret = now.add('days',3).format("YYYY-MM-DD");
 	
-	res.render('plan', {subtitle: 'Plan', airports: locations, dep_date: dep, ret_date: ret, layout: 'layout_lite'});
+	res.render('plan', {subtitle: 'Plan', airports: locations, dep_date: dep, ret_date: ret, layout: 'layout_lite', title: title});
 });
 
 app.get('/plan_view', function(req, res) {
@@ -80,7 +80,8 @@ app.get('/plan_view', function(req, res) {
 				prev_url: prev_url,
 				flight_type: flight_type,
 				page: page,
-				layout: 'layout_lite'});
+				layout: 'layout_lite',
+				title: title});
 		}, from, to, page,"plan_view", client);
 	// }	
 });
@@ -135,7 +136,7 @@ app.get('/contacts_raw', function(req, res) {
 
 app.get('/contacts', function(req,res) {
 	data.findLocations(function(locations) {
-		res.render('contacts', { layout: layout(req), locations: locations });
+		res.render('contacts', { layout: layout(req), locations: locations, title: title, version: client });
 	}, client);
 });
 
@@ -170,6 +171,7 @@ function layout(req,full) {
 		else
 			console.log("Returning lite layout");
 		return (full)? 'layout' : 'layout_lite';
+		// return 'layout_opera';
 	}
 };
 
