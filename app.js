@@ -41,7 +41,7 @@ app.get('/', function(req, res) {
   	var ver = process.env.CLIENT || "kq";
 	var ua = req.headers['user-agent'];
 	console.log("Version is " + ver + " Agent: " + ua);
-	res.render('index', { version: ver, title: title })
+	res.render('index', { version: ver, title: title, layout: layout(req, true) });
 });
 
 var locations = null;
@@ -147,16 +147,25 @@ app.get('/contact', function(req, res) {
 });
 
 app.get('/offers', function(req, res) {
-	var ua = req.headers['user-agent'];
-	console.log("Agent: " + ua);
 	data.findOffersByAirline(function(offers) {
-		res.render('special_offers', { subtitle: 'Special Offers', layout: 'layout_lite', offers: offers});
+		res.render('special_offers', { subtitle: 'Special Offers', layout: layout(req), offers: offers});
 	}, client);
 });
 
 app.get('/map', function(req, res) {
 	res.render('map_canvas', { subtitle: 'Map', title: title, version: client });
 });
+
+function layout(req,full) {
+	var ua = req.headers['user-agent'];
+	console.log("Offers Agent: " + ua);
+	var operaMiniHeader = 'Opera/9.80 (J2ME/MIDP; Opera Mini/4.2.13212/26.1395; U; en) Presto/2.8.119 Version/10.54';
+	if (ua == operaMiniHeader) {
+		return 'layout_opera';
+	}
+	else 
+		return (full)? 'layout' : 'layout_lite';
+};
 
 //Listen on the correct port
 var port = process.env.PORT || 3000;
