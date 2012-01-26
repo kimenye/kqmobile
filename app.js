@@ -39,7 +39,8 @@ app.configure('production', function(){
 
 app.get('/', function(req, res) {
   	var ver = process.env.CLIENT || "kq";
-	console.log("Version is " + ver);
+	var ua = req.headers['user-agent'];
+	console.log("Version is " + ver + " Agent: " + ua);
 	res.render('index', { version: ver, title: title })
 });
 
