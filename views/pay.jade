@@ -1,0 +1,23 @@
+div#payViewPage(class='interior', data-role='page')
+	h1.logo
+		a(href="", data-rel="back")
+			img.logoimg(src='images/mpesa.png')
+	div(data-role='header')
+		h1=subtitle
+	div(data-role='content')
+		h4 To Pay using your Safaricom Mobile Phone, follow the instructions below:
+		ul
+			li Go to to M-PESA on the Safaricom menu of your phone
+			li Select 'Pay Bill'
+			li Enter XXXXXX as the Business No
+			li Enter YYYYYY-01 as the account no.
+			li Enter 10416.56 (ticket value) as the amount
+			li Enter your M-PESA PIN number
+			li Confirm the account number and the amount then submit and wait for a confirmation SMS from Safaricom M-PESA.
+			li If you wish to pay now and receive your ticket immediately, please enter your M-PESA confirmation code below and click on the 'PROCEED' button.
+		form#frmPay(action='/pay', method='post')
+			label(for='confirmation_code') Confirmation code
+			input#confirmation_code(type='text', name='confirmation_code')
+			input#when(type="hidden", value='#{when}', name='when')
+			input#code(type="hidden", value='#{flight.code}', name='code')
+			input(type="submit", value="Proceed")

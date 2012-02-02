@@ -1,0 +1,5 @@
+div#payViewPage(class='interior', data-role='page')
+	!=partial('header_nologo', { subtitle: subtitle })
+	div(data-role='content')
+		h4 Thank you for your booking. Your reference is XXXXXX.
+		p Make sure you are at the airport two hours before #{when} #{flight.dep}

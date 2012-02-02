@@ -9,6 +9,6 @@ div#selectPage
 			.ui-block-c #{flight.price}
 			.ui-block-a #{flight.arr} #{flight.destination}
 			.ui-block-b #{flight.duration}
-		a(data-role="button", data-theme="b", data-rel="back") Select
+		a(data-role="button", data-theme="b", href="pay?code=#{flight.code}&when=#{when}") Select
 		a(data-role="button", data-theme="b", data-rel="back") No
 			

@@ -130,6 +130,27 @@ app.get('/select', function(req, res) {
 
 });
 
+app.get('/pay', function(req, res) {
+	var code = req.param('code');
+	var when = req.param('when');
+	
+	data.findFlight(function(flight) {
+		res.render('pay', { subtitle: 'Pay', title: title, flight: flight, version: client, when: when, layout: layout(req)});
+	}, code);
+	
+});
+
+app.post('/pay', function(req, res) {
+	var ref = req.param('confirmation_code');
+	var code = req.param('code');
+	var when = req.param('when');
+	
+	data.findFlight(function(flight) {
+		res.render('booking', { subtitle: 'Your ticket', title: title, flight: flight, when: when, version:client, layout: layout(req)});
+	}, code);
+	
+});
+
 app.get('/contacts_raw', function(req, res) {
 	var type = req.param('type');
 	data.findLocationsByTypeAndAirline(function(locations) {
@@ -158,10 +179,6 @@ app.get('/offers', function(req, res) {
 
 app.get('/map', function(req, res) {
 	res.render('map_canvas', { subtitle: 'Map', title: title, version: client });
-});
-
-app.get('/pay', function(req, res) {
-	res.render('pay', { subtitle: 'Pay', title: title, version: client, layout: layout(req)});
 });
 
 function layout(req,full) {
