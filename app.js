@@ -152,7 +152,7 @@ app.get('/contact', function(req, res) {
 
 app.get('/offers', function(req, res) {
 	data.findOffersByAirline(function(offers) {
-		res.render('special_offers', { subtitle: 'Special Offers', layout: layout(req), version: client, offers: offers});
+		res.render('special_offers', { subtitle: 'Special Offers', layout: layout(req), title: title, version: client, offers: offers});
 	}, client);
 });
 
@@ -160,19 +160,18 @@ app.get('/map', function(req, res) {
 	res.render('map_canvas', { subtitle: 'Map', title: title, version: client });
 });
 
+app.get('/pay', function(req, res) {
+	res.render('pay', { subtitle: 'Pay', title: title, version: client, layout: layout(req)});
+});
+
 function layout(req,full) {
 	var ua = req.headers['user-agent'];
-//	console.log("Offers Agent: " + ua);
+
 	var operaMiniHeader = 'Opera/9.80 (J2ME/MIDP; Opera Mini/4.2.13212/26.1395; U; en) Presto/2.8.119 Version/10.54';
 	if (ua == operaMiniHeader) {
-		// console.log("Returning opera layout");
 		return 'layout_opera';
 	}
 	else {
-		// if (full)
-		// 	console.log("Returning full layout");
-		// else
-		// 	console.log("Returning lite layout");
 		return (full)? 'layout' : 'layout_lite';
 	}
 };
