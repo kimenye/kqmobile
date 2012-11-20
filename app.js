@@ -197,7 +197,7 @@ function layout(req,full) {
 var port = process.env.PORT || 3000;
 
 
-console.log("The client is " + client);
+console.log("The client is " + client, port);
 
 app.listen(port, function() {
   console.log("Listening on " + port);
