@@ -1,0 +1,4 @@
+How to run
+==========
+1. Make sure mongo server is running
+2. node app.js
