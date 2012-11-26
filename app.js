@@ -59,6 +59,11 @@ app.get('/plan', function(req, res) {
 	res.render('plan', {subtitle: 'Plan', airports: locations, dep_date: dep, ret_date: ret, layout: layout(req), version: client, title: title});
 });
 
+
+app.get('/airports', function(req, res) {
+    res.json(locations);
+});
+
 app.get('/plan_view', function(req, res) {
 	var action = req.param('action');
 	var from = req.param('from_airport');
