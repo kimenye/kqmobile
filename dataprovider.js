@@ -159,6 +159,18 @@ DataProvider.prototype.findAllAirports = function(callback) {
 	});
 };
 
+/**
+ * Find all the locations and return
+ */
+DataProvider.prototype.findAllLocations = function(callback) {
+    Location.find({}, function(error, docs) {
+        if (error) callback(error)
+        else {
+            callback(null, docs);
+        }
+    });
+};
+
 DataProvider.prototype.findAll
 
 exports.DataProvider = DataProvider;
