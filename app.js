@@ -64,6 +64,25 @@ app.get('/airports', function(req, res) {
     res.json(locations);
 });
 
+app.get('/timetable_json', function(req, res) {
+    var from = req.param('from_airport');
+    var to = req.param('to_airport');
+    var page = req.param('page');
+
+    if (!page)
+        page = 0;
+
+//    console.log("from: %s, to: %s, page: %s, client: %s", from, to, page, client);
+    data.timetable(function(flights,forDay,page,prev_url,next_url) {
+        res.json({
+            date: forDay,
+            flights: flights,
+            page: page
+        });
+    }, from, to, page,"timetable_view", client);
+
+});
+
 app.get('/plan_view', function(req, res) {
 	var action = req.param('action');
 	var from = req.param('from_airport');
