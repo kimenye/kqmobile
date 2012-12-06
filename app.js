@@ -45,13 +45,13 @@ app.get('/', function(req, res) {
 });
 
 var locations = null;
-var contactLocations = null;
 data.findAllAirports(function(error, ports) {
     locations = ports;
 });
-data.findAllLocations(function(error, ports) {
-    contactLocations = ports;
-});
+
+//data.findLocations(function(error, ports) {
+//    contactLocations = ports;
+//}, client);
 // var ports;
 
 app.get('/plan', function(req, res) {
@@ -92,23 +92,14 @@ app.get('/plan_view', function(req, res) {
 });
 
 app.get('/get_locations', function(req, res) {
-    console.log("in get locations");
-//    res.json("hello");
-    res.writeHead(200, {"Content-Type": "text/javascript"});
-    var callbackFunction = req.param('callback');
-    var jsonData = JSON.stringify(locations);
-    var jsonpData = callbackFunction + '(' + jsonData + ')'
-//    console.log("jsonpData: " + jsonpData);
-//    console.log("In get_lo")
-    res.write(jsonpData);
-//    //res.write(JSON.stringify(locations));
+    res.write(locations);
 });
 
-app.get('/simple', function(req, res) {
-    console.log("In simple");
-    res.writeHead(200, {"Content-Type": "application/json"});
-    res.write(JSON.stringify({ test: "test"}));
-})
+app.get('/get_contact_locations', function(req, res) {
+    data.findLocations(function(locations) {
+        res.json(locations);
+    }, client);
+});
 
 app.get('/timetable', function(req, res) {
 	res.render('timetable', {subtitle: 'Timetable', airports: locations, layout: layout(req), title: title, version: client});
