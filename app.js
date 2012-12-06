@@ -46,8 +46,12 @@ app.get('/', function(req, res) {
 
 var locations = null;
 data.findAllAirports(function(error, ports) {
-	locations = ports;
+    locations = ports;
 });
+
+//data.findLocations(function(error, ports) {
+//    contactLocations = ports;
+//}, client);
 // var ports;
 
 app.get('/plan', function(req, res) {
@@ -109,6 +113,16 @@ app.get('/plan_view', function(req, res) {
 				title: title});
 		}, from, to, page,"plan_view", client);
 	// }	
+});
+
+app.get('/get_locations', function(req, res) {
+    res.write(locations);
+});
+
+app.get('/get_contact_locations', function(req, res) {
+    data.findLocations(function(locations) {
+        res.json(locations);
+    }, client);
 });
 
 app.get('/timetable', function(req, res) {
