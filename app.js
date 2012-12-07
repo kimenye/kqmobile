@@ -115,10 +115,6 @@ app.get('/plan_view', function(req, res) {
 	// }	
 });
 
-app.get('/get_locations', function(req, res) {
-    res.write(locations);
-});
-
 app.get('/get_contact_locations', function(req, res) {
     data.findLocations(function(locations) {
         res.json(locations);
