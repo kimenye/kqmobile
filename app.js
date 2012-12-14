@@ -147,6 +147,34 @@ app.get('/timetable', function(req, res) {
 	res.render('timetable', {subtitle: 'Timetable', airports: locations, layout: layout(req), title: title, version: client});
 });
 
+app.get('/information', function(req, res) {
+    res.render('information', {subtitle: 'Information', title: title, version: client});
+});
+
+app.get('/mpesa', function(req, res) {
+    res.render('mpesa', {subtitle: 'Mpesa', title: title, version: client});
+});
+
+app.get('/3dsecure', function(req, res) {
+    res.render('3dsecure', {subtitle: '3D Secure', title: title, version: client});
+});
+
+app.get('/airtel', function(req, res) {
+    res.render('airtel', {subtitle: 'Airtel Money', title: title, version: client});
+});
+
+app.get('/payment', function(req, res) {
+    res.render('payment', {subtitle: 'Payment Methods', title: title, version: client});
+});
+
+app.get('/faq', function(req, res) {
+    res.render('faq', {subtitle: 'FAQ', title: title, version: client});
+});
+
+app.get('/visahealth', function(req, res) {
+    res.render('visahealth', {subtitle: 'Visa and Health Information', title: title, version: client});
+});
+
 app.get('/timetable_view', function(req, res) {
 	// console.log("Action is " + req.param('action'));
 	var action = req.param('action');
