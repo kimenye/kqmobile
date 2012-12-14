@@ -1,0 +1,23 @@
+div#checkinPage(class='interior', data-role='page', data-add-back-btn="true", data-back-btn-text="Back")
+    !=partial('header_nologo', { title: 'Check in' })
+    div.ui-content(data-role='content')
+        div.content-primary
+            form#frmCheckin(action='/checkin_view', method="get",data-ajax="true", class='checkin')
+                div(data-role='field-contain')
+                    label(for='id_type') Form of Identification:
+                    select(id='id_type', class='id_type')
+                        option(value='1', selected='on') Booking Confirmation
+                        option(value='2', selected='on') E-Ticket
+                div(data-role='field-contain')
+                    input#id_value(type='text', name='id_value', value='', placeholder='Booking Confirmation', class='required')
+                div(data-role='field-contain')
+                    label(for='flight_number') Flight Number:
+                    input#flight_number(type='text', name='flight_number', value='', class='required')
+                div(data-role='field-contain')
+                    label(for='flight_date') Flight Date:
+                    input#flight_date(type='text', name='flight_date', value='', class='required', data-role='datebox', data-options="{'mode' : 'calbox', 'afterToday' : true, 'noButtonFocusMode': true, 'disableManualInput': true, 'dateFormat' : 'DD/MM/YYYY'}")
+                div(data-role='field-contain')
+                    label(for='from_aiport') From:
+                    select(name='from_airport', id='from_airport', class='airport from_airport')
+                div(data-role='field-contain')
+                    input(type='submit', value='Continue')

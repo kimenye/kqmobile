@@ -175,6 +175,18 @@ app.get('/visahealth', function(req, res) {
     res.render('visahealth', {subtitle: 'Visa and Health Information', title: title, version: client});
 });
 
+app.get('/checkin', function(req, res) {
+    res.render('checkin', {subtitle: 'Check in', title: title, version: client});
+});
+
+app.get('/checkin_view', function(req, res) {
+    res.render('checkin_view', {subtitle: 'Check in', title: title, version: client});
+});
+
+app.get('/boarding_pass', function(req, res) {
+    res.render('boarding_pass', {subtitle: 'Boarding Pass', title: title, version: client});
+});
+
 app.get('/timetable_view', function(req, res) {
 	// console.log("Action is " + req.param('action'));
 	var action = req.param('action');

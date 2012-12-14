@@ -1,0 +1,32 @@
+div#checkinFlightsDetailPage(class='interior', data-role='page', data-add-back-btn="true", data-back-btn-text="Back")
+    !=partial('header_nologo', { title: 'Check in' })
+    div.ui-content(data-role='content')
+        div.content-primary
+            table
+                tbody
+                    tr
+                        td Passenger:
+                        td Annabelle Citizen
+                    tr
+                        td Flight No:
+                        td KQ-600
+                    tr
+                        td Flight:
+                        td Nairobi - Mombasa
+                    tr
+                        td Seat:
+                        td 19A
+                    tr
+                        td Status:
+                        td Confirmed
+                    tr
+                        td Dep:
+                        td 8.00AM
+                    tr
+                        td Gate:
+                        td TBD
+            div(data-role='field-contain')
+                input#checkbox-1(type='checkbox', name='checkbox-1', value='1', class='required')
+                    label(for='checkbox-1') I have not packed any dangerous goods
+            div(data-role='field-contain')
+                a(data-role='button', href='boarding_pass') Check in

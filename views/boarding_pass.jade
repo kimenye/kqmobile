@@ -1,0 +1,18 @@
+div#boardingPassPage(class='interior', data-role='page', data-add-back-btn="true", data-back-btn-text="Back")
+    !=partial('header_nologo', { title: 'Boarding Pass' })
+    div.ui-content(data-role='content')
+        div.content-primary
+            fieldset.ui-grid-a
+                div.ui-block-a
+                    div.barcode CODE39
+                    span.barcode-num 0018765300
+                div(class='ui-block-b pass-summary')
+                    h1 19A
+                    p Economy Class
+            hr
+            fieldset.pass-details
+                h1 MS ANABELLE CITIZEN
+                h2 KQ600
+                h3 To Mombasa
+                h3 13th Dec - 08:10
+                h4 From: JKIA (Nairobi) - Terminal 2
